@@ -1,0 +1,391 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 14px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.main-container {
+    width: 100%;
+    height: 1080px;
+    background: rgba(44, 44, 44, 1);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+.content-background {
+    width: 74%;
+    height: 800px;
+    background: rgba(30, 30, 30, 1);
+    position: absolute;
+    top: 251px;
+    left: 450px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+
+.header {
+    position: absolute;
+    width: 100%;
+    height: 133px;
+    top: 0;
+    background: #1E1E1E;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.header .logo {
+    position: absolute;
+    left: 21px;
+    top: 27px;
+    width: 43px;
+    height: 78px;
+    background: url('https://www.clipartmax.com/png/middle/225-2252629_java-duke-icon-duke-java-icon-png.png') no-repeat center center;
+    background-size: contain;
+}
+
+.header .title {
+    position: absolute;
+    left: 82px;
+    top: 52px;
+    color: #FFFFFF;
+    font-size: 21px;
+    line-height: 32px;
+}
+
+.javadoc-section {
+    width: 100%;
+    height: 136px;
+    position: absolute;
+    top: 847px;
+    left: 491px;
+    overflow: hidden;
+}
+
+.section-title {
+    width: 91px;
+    color: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-family: JetBrains Mono;
+    font-weight: Regular;
+    font-size: 16px;
+    text-align: center;
+}
+
+.javadoc-description {
+    width: 100%;
+    height: 94px;
+    position: absolute;
+    top: 42px;
+    left: 0px;
+    overflow: hidden;
+}
+
+.description-background {
+    width: 53%;
+    height: 94px;
+    background: rgba(44, 44, 44, 1);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.description-text {
+    width: 920px;
+    color: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 27px;
+    left: 32px;
+    font-family: JetBrains Mono;
+    font-weight: Regular;
+    font-size: 16px;
+    text-align: left;
+}
+
+.regex-section {
+    width: 100%;
+    height: 542px;
+    position: absolute;
+    top: 280px;
+    left: 478px;
+    overflow: hidden;
+}
+
+.regex-description {
+    width: 100%;
+    height: 487px;
+    position: absolute;
+    top: 55px;
+    left: 13px;
+    overflow: hidden;
+}
+
+.regex-background {
+    width: 53%;
+    height: 487px;
+    background: rgba(44, 44, 44, 1);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.regex-text {
+    width: 920px;
+    color: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 49px;
+    left: 47px;
+    font-family: JetBrains Mono;
+    font-weight: Regular;
+    font-size: 16px;
+    text-align: left;
+}
+
+.code-block {
+    width: 926px;
+    height: 263px;
+    position: absolute;
+    top: 240px;
+    left: 54px;
+    overflow: hidden;
+}
+
+.code-background {
+    width: 926px;
+    height: 263px;
+    background: rgba(30, 30, 30, 1);
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.code-text {
+    width: 775px;
+    color: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 24px;
+    left: 34px;
+    font-family: JetBrains Mono;
+    font-weight: Regular;
+    font-size: 16px;
+    text-align: left;
+}
+
+.section-subtitle {
+    width: 307px;
+    color: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 9px;
+    left: 0px;
+    font-family: JetBrains Mono;
+    font-weight: Regular;
+    font-size: 16px;
+    text-align: center;
+}
+
+.create-post-button {
+    width: 206px;
+    height: 53px;
+    position: absolute;
+    top: 180px;
+    left: 1649px;
+    overflow: hidden;
+}
+
+.button-background {
+    width: 206px;
+    height: 53px;
+    background: rgba(30, 30, 30, 1);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.button-text-publi {
+    width: 176px;
+    color: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 17px;
+    left: 17px;
+    font-family: JetBrains Mono;
+    font-weight: Regular;
+    font-size: 16px;
+    text-align: center;
+}
+
+.edit-button {
+    width: 89px;
+    height: 40px;
+    position: absolute;
+    top: 833px;
+    left: 1409px;
+    overflow: hidden;
+}
+
+.edit-button-second {
+    width: 89px;
+    height: 40px;
+    position: absolute;
+    top: 994px;
+    left: 1409px;
+    overflow: hidden;
+}
+
+.button-background-edit {
+    width: 89px;
+    height: 40px;
+    background: rgba(44, 44, 44, 1);
+    opacity: 1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 20px;
+    overflow: hidden;
+
+}
+
+.button-text {
+    width: 65px;
+    color: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 10px;
+    left: 13px;
+    font-family: JetBrains Mono;
+    font-weight: Regular;
+    font-size: 16px;
+    text-align: center;
+}
+
+.sidebar {
+    width: 381px;
+    height: 882px;
+    position: absolute;
+    top: 169px;
+    left: 37px;
+    overflow: hidden;
+}
+
+.sidebar-background {
+    width: 381px;
+    height: 882px;
+    background: rgba(30, 30, 30, 1);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.previous-topic {
+    width: 317px;
+    height: 53px;
+    position: absolute;
+    top: 298px;
+    left: 31px;
+    overflow: hidden;
+}
+
+.icon-background {
+    width: 53px;
+    height: 53px;
+    background: rgba(44, 44, 44, 1);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.sidebar-text {
+    width: 289px;
+    color: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 17px;
+    left: 28px;
+    font-family: JetBrains Mono;
+    font-weight: Regular;
+    font-size: 16px;
+    text-align: center;
+}
+
+.next-topic {
+    width: 317px;
+    height: 53px;
+    position: absolute;
+    top: 375px;
+    left: 31px;
+    overflow: hidden;
+}
+
+.logout-text {
+    width: 289px;
+    color: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 822px;
+    left: 45px;
+    font-family: JetBrains Mono;
+    font-weight: Regular;
+    font-size: 16px;
+    text-align: center;
+}
+
+.user-info {
+    width: 289px;
+    height: 177px;
+    position: absolute;
+    top: 58px;
+    left: 37px;
+    overflow: hidden;
+}
+
+.username-text {
+    width: 289px;
+    color: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 157px;
+    left: 0px;
+    font-family: JetBrains Mono;
+    font-weight: Regular;
+    font-size: 16px;
+    text-align: center;
+}
+
+.user-icon {
+    width: 131px;
+    height: 123px;
+    background: url("C:/Users/uirtis/Documents/Proyecto_App_Web/images/user_icon.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    left: 80px;
+    overflow: hidden;
+}
+
+.divider {
+    width: 59px;
+    height: 51px;
+    background: url("C:/Users/uirtis/Documents/Proyecto_App_Web/images/pin_icon.png");
+    position: absolute;
+    top: 0px;
+    left: 950px;
+    overflow: hidden;
+
+}

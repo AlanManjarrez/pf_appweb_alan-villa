@@ -1,0 +1,143 @@
+.header {
+    position: absolute;
+    width: 100%;
+    height: 133px;
+    top: 0;
+    background: #1E1E1E;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.header .logo {
+    position: absolute;
+    left: 21px;
+    top: 27px;
+    width: 43px;
+    height: 78px;
+    background: url('https://www.clipartmax.com/png/middle/225-2252629_java-duke-icon-duke-java-icon-png.png') no-repeat center center;
+    background-size: contain;
+}
+
+.header .title {
+    position: absolute;
+    left: 82px;
+    top: 52px;
+    color: #FFFFFF;
+    font-size: 24px;
+    line-height: 32px;
+}
+
+.titulo-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+}
+
+/* Fondo principal del formulario de registro */
+body {
+    margin: 0px;
+    font-family: 'JetBrains Mono', monospace;
+    background: #2C2C2C;
+    color: #FFFFFF;
+}
+
+/* Contenedor principal centrado */
+.registro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding-top: 200px;
+    padding-bottom: 50px;
+}
+
+
+/* Contenedor del formulario de registro */
+.form {
+    width: 441px;
+}
+
+/* Caja del formulario */
+.backgroundform {
+    background: #1E1E1E;
+    border-radius: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    max-height: 120vh;
+    /* Altura máxima del formulario */
+}
+
+
+.titulo-registro {
+    text-align: center;
+    font-size: 40px;
+}
+
+/* Contenedor para los campos del formulario */
+.form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Estilo para las etiquetas de los campos */
+.label {
+    font-size: 16px;
+}
+
+/* Estilo para los campos del formulario */
+.campo-registro {
+    background: #2C2C2C;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    color: #FFFFFF;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 16px;
+}
+
+
+
+.icono-avatar {
+    width: 24px;
+    height: auto;
+    
+}
+
+/* Estilo para el botón de "Registrarse" */
+.boton-registrarse {
+    font-family: 'JetBrains Mono', monospace;
+    background: #2C2C2C;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    transition: background 0.3s;
+    color: #FFFFFF;
+}
+
+.boton-registrarse:hover {
+    background: #3A3A3A;
+}
+
+input[type=file] {
+    display: none;
+  }
+  
+  .custom-file-upload {
+    background: #2C2C2C;
+    border-radius: 20px;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 5px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+  }
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
