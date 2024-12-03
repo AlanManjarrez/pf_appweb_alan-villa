@@ -115,7 +115,7 @@ public class RegistrarUsuarioServlet extends HttpServlet {
                 filePart.write(avatarPath); // Guardar el archivo
 
                 // La ruta que se guardará en la base de datos será la ruta relativa
-                avatarPath = UPLOAD_DIRECTORY + "/" + fileName;
+                avatarPath = "ruta" + "/" + fileName;
             } else {
                 request.setAttribute("mensaje", "El archivo debe ser PNG o JPG.");
                 request.setAttribute("tipoMensaje", "error");
@@ -124,7 +124,7 @@ public class RegistrarUsuarioServlet extends HttpServlet {
             }
         } else {
             // Asignar la ruta de imagen por defecto si no se ha subido ninguna imagen
-            avatarPath = DEFAULT_AVATAR_PATH;
+            avatarPath = "ruta/default.png";
         }
 
         UsuarioDTO usuarioDTO = new UsuarioDTO();

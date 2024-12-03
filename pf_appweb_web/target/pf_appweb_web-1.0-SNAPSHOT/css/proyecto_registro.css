@@ -1,3 +1,19 @@
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body */
+body {
+    margin: 0px;
+    font-family: 'JetBrains Mono', monospace;
+    background: #2C2C2C;
+    color: #FFFFFF;
+}
+
+/* Header */
 .header {
     position: absolute;
     width: 100%;
@@ -13,7 +29,7 @@
     top: 27px;
     width: 43px;
     height: 78px;
-    background: url('https://upload.wikimedia.org/wikipedia/commons/5/5d/Duke_%28Java_mascot%29_waving.svg') no-repeat center center;
+    background: url('https://i.imgur.com/gxdoHUn.jpeg') no-repeat center center;
     background-size: contain;
 }
 
@@ -26,18 +42,7 @@
     line-height: 32px;
 }
 
-.titulo-header {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 24px;
-}
-
-body {
-    margin: 0px;
-    font-family: 'JetBrains Mono', monospace;
-    background: #2C2C2C;
-    color: #FFFFFF;
-}
-
+/* Main Section */
 .registro {
     display: flex;
     justify-content: center;
@@ -46,7 +51,6 @@ body {
     padding-top: 200px;
     padding-bottom: 50px;
 }
-
 
 .form {
     width: 441px;
@@ -60,7 +64,6 @@ body {
     max-height: 120vh;
 }
 
-
 .titulo-registro {
     text-align: center;
     font-size: 40px;
@@ -72,6 +75,7 @@ body {
     gap: 20px;
 }
 
+/* Icon User */
 .icon-user {
     border-bottom: 2px solid #ccc;
     text-align: center;
@@ -80,7 +84,8 @@ body {
     margin-bottom: 50px;
 }
 
-.avatar-preview-container{
+/* Avatar Preview */
+.avatar-preview-container {
     text-align: center;
     font-size: 50px;
     margin-top: 30px;
@@ -97,20 +102,28 @@ body {
     border-radius: 20px;
     padding: 10px;
     color: #FFFFFF;
-    box-sizing: border-box;
     width: 100%;
     font-size: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+}
+
+/* File Upload (Avatar) */
+.custom-file-upload {
+    background: #2C2C2C;
+    border-radius: 20px;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 5px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
 }
 
 .icono-avatar {
     width: 24px;
     height: auto;
-
 }
 
+/* Button */
 .boton-registrarse {
     font-family: 'JetBrains Mono', monospace;
     background: #2C2C2C;
@@ -132,24 +145,14 @@ input[type=file] {
     display: none;
 }
 
-.custom-file-upload {
-    background: #2C2C2C;
-    border-radius: 20px;
-    box-sizing: border-box;
-    display: inline-block;
-    padding: 5px;
-    cursor: pointer;
-    text-align: center;
-    width: 100%;
-}
-
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
 }
 
-.alert-success{
+/* Alert Styles */
+.alert-success {
     color: green;
     font-size: 14px;
     margin-bottom: 10px;
@@ -162,15 +165,37 @@ select {
     margin-bottom: 10px;
     text-align: center;
 }
-.login-boton{
-    display: inline-block;
-    margin-bottom: 20px;
+
+/* Contenedor del botón de login */
+.login-boton-container {
     text-align: center;
-    padding: 10px 15px;
-    background-color: #343a40;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
+    margin-top: 30px;  /* Da espacio por encima */
+}
+
+/* Estilo del botón de login */
+.login-boton {
+    display: inline-block;         /* Para que el enlace se comporte como un botón */
+    margin-bottom: 20px;           /* Separación de otros elementos */
+    text-align: center;            /* Centrado del texto dentro del enlace */
+    padding: 10px 15px;            /* Espaciado dentro del botón */
+    background-color: #343a40;     /* Fondo oscuro */
+    color: white;                  /* Color de texto blanco */
+    border-radius: 5px;            /* Bordes redondeados */
+    text-decoration: none;         /* Elimina el subrayado predeterminado */
+    font-size: 16px;               /* Tamaño de fuente adecuado */
+    font-weight: bold;             /* Negrita para destacar */
+    transition: background-color 0.3s ease; /* Transición de color de fondo */
+}
+
+/* Efecto hover (cuando el ratón pasa por encima) */
+.login-boton:hover {
+    background-color: #495057;     /* Cambia el fondo a un gris más claro */
+}
+
+/* Avatar Preview Image */
+.avatar-preview {
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
 }

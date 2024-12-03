@@ -1,3 +1,4 @@
 pf_appweb_web_servlets\RegistrarUsuarioServlet.class
 pf_appweb_web_jakarta\JakartaRestConfiguration.class
+pf_appweb_web_servlets\LoginServlet.class
 pf_appweb_web\resources\JakartaEE11Resource.class
