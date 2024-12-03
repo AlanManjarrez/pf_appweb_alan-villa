@@ -26,10 +26,12 @@ public class UsuarioDAO implements IUsuarioDAO{
             entityManager.getTransaction().begin();
             
             Long id = usuario.getId();
+            String correo = usuario.getCorreo();
             Usuario usuarioExistente = null;
             try {
-               usuarioExistente = entityManager.createQuery("SELECT U FROM Usuario U WHERE U.id =:id", Usuario.class)
+               usuarioExistente = entityManager.createQuery("SELECT U FROM Usuario U WHERE U.id =:id AND U.correo = :correo", Usuario.class)
                        .setParameter("id", id)
+                       .setParameter("correo", correo)
                        .getSingleResult();
                 
             } catch (NoResultException e) {

@@ -163,12 +163,14 @@ public class RegistrarUsuarioServlet extends HttpServlet {
                 request.setAttribute("tipoMensaje", "error");
                 request.getRequestDispatcher("RegistroUsuario.jsp").forward(request, response);
             }
-        } catch (Exception e) {
+        }catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("mensaje", "Ocurrió un error inesperado. Inténtalo nuevamente.");
             request.setAttribute("tipoMensaje", "error");
             request.getRequestDispatcher("RegistroUsuario.jsp").forward(request, response);
         }
+        // Manejar el error de correo duplicado
+        
     }
 
     private String getFileName(Part part) {
