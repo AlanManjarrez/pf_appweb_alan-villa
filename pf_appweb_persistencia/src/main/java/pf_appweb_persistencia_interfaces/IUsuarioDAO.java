@@ -20,5 +20,7 @@ public interface IUsuarioDAO {
 
     public Usuario eliminarUsuario(Usuario usuario);
 
-    public Usuario obtenerUsuario(long id);
+    //public Usuario obtenerUsuarioCorreo(String correo);
+    
+    public Usuario iniciarSesion(String correo, String contrasena);
 }

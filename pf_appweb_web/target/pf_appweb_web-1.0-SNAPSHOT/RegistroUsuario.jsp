@@ -56,10 +56,8 @@
                         </label>
 
                         <!-- Avatar Preview Section -->
+                        <label>Vista previa del avatar:</label>
                         <div class="avatar-preview-container">
-                            <label>Vista previa del avatar:</label>
-                            <br>
-                            <br>
                             <img width="45px" height="45px" id="avatar-preview" src="ruta/default.png" alt="Vista previa del avatar" class="avatar-preview">
                         </div>
 

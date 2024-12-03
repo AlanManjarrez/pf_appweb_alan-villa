@@ -11,6 +11,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import pf_appweb_negocio_DTOS.UsuarioDTO;
+import pf_appweb_negocio_controles.ControlUsuario;
 
 /**
  *
@@ -57,7 +62,25 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            String correo = request.getParameter("email");
+            String password = request.getParameter("password");
+
+            ControlUsuario controlUsuario = new ControlUsuario();
+            UsuarioDTO usuarioDTO = controlUsuario.iniciarSesion(correo, password);
+
+            if (usuarioDTO == null) {
+                response.sendRedirect("Login.jsp?error=incorrectCredentials");
+            } else {
+                HttpSession session = request.getSession();
+                session.setAttribute("usuario", usuarioDTO);
+                response.sendRedirect("Publicaciones.jsp");
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, e);
+            response.sendRedirect("Login.jsp?error=internalError");
+        }
     }
 
     /**
@@ -69,11 +92,11 @@ public class LoginServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
         processRequest(request, response);
     }
-
+    
     /**
      * Returns a short description of the servlet.
      *

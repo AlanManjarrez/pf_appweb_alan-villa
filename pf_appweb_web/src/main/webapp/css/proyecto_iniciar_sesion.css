@@ -1,6 +1,11 @@
+/* Estilo global */
 body {
     margin: 0;
-    background-color: #2C2C2C;
+    background: url('https://www.muralunique.com/wp-content/uploads/2021/02/1865_v_black-and-white-marble_new.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #FFFFFF;
     font-family: 'JetBrains Mono', monospace;
     display: flex;
     justify-content: center;
@@ -8,51 +13,54 @@ body {
     height: 100vh;
 }
 
+/* Encabezado */
 .header {
     position: absolute;
+    top: 0;
     width: 100%;
     height: 133px;
-    top: 0;
     background: #1E1E1E;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
 }
 
 .header .logo {
-    position: absolute;
-    left: 21px;
-    top: 27px;
     width: 43px;
     height: 78px;
-    background: url('https://www.clipartmax.com/png/middle/225-2252629_java-duke-icon-duke-java-icon-png.png') no-repeat center center;
+    background: url('https://marekhudyma.com/assets/2021-05-01-java-duke/gallery/ChezDuke.png') no-repeat center center;
     background-size: contain;
+    margin-left: 21px;
 }
 
 .header .title {
-    position: absolute;
-    left: 82px;
-    top: 52px;
     color: #FFFFFF;
     font-size: 24px;
     line-height: 32px;
+    margin-left: 20px;
 }
 
+/* Contenedor del formulario */
 .form-container {
     position: relative;
-    width: 727px;
+    width: 400px; /* Ajustado para un diseño más compacto */
     background: #1E1E1E;
     border-radius: 20px;
-    padding: 40px;
+    padding: 40px 30px;
     text-align: center;
     color: #FFFFFF;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .form-container h2 {
     margin: 0;
-    font-size: 40px;
+    font-size: 36px; /* Ajustado para una mejor escala */
+    margin-bottom: 20px;
 }
 
+/* Grupo de campos */
 .form-group {
-    margin: 30px 0;
+    margin-bottom: 20px;
     text-align: left;
 }
 
@@ -64,23 +72,72 @@ body {
 
 .form-group input {
     width: 100%;
-    padding: 10px;
+    padding: 12px 15px;
     background: #2C2C2C;
     border: none;
     border-radius: 20px;
     color: #FFFFFF;
-    font-size: 16px;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s;
 }
 
+.form-group input:focus {
+    border-color: #888888;
+}
+
+/* Botón de enviar */
 .form-button {
     font-family: 'JetBrains Mono', monospace;
-    width: 170px;
-    padding: 15px;
+    width: 100%;
+    padding: 12px;
     background: #2C2C2C;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     color: #FFFFFF;
     font-size: 16px;
-    margin-top: 20px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.form-button:hover {
+    background: #444444;
+    border-color: #FFFFFF;
+}
+
+/* Mensajes de error */
+p {
+    color: #FF4C4C;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Contenedor del botón de login */
+.sign-boton-container {
+    text-align: center;
+    margin-top: 30px;  /* Da espacio por encima */
+}
+a{
+    color: #FFFFFF;
+}
+
+/* Estilo del botón de login */
+.sign-boton {
+    display: inline-block;         /* Para que el enlace se comporte como un botón */
+    margin-bottom: 20px;           /* Separación de otros elementos */
+    text-align: center;            /* Centrado del texto dentro del enlace */
+    padding: 10px 15px;            /* Espaciado dentro del botón */
+    background-color: #1E1E1E;     /* Fondo oscuro */
+    color: white;                  /* Color de texto blanco */
+    border-radius: 5px;            /* Bordes redondeados */
+    text-decoration: none;         /* Elimina el subrayado predeterminado */
+    font-size: 16px;               /* Tamaño de fuente adecuado */
+    font-weight: bold;             /* Negrita para destacar */
+    transition: background-color 0.3s ease; /* Transición de color de fondo */
+}
+
+/* Efecto hover (cuando el ratón pasa por encima) */
+.sign-boton:hover {
+    background-color: #495057;     /* Cambia el fondo a un gris más claro */
 }

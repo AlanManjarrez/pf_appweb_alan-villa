@@ -109,22 +109,48 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
         return null;
     }
-
+    /**
     @Override
-    public Usuario obtenerUsuario(long id) {
+    public Usuario obtenerUsuarioCorreo(String correo) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("conexionPU");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             entityManager.getTransaction().begin();
-            entityManager.createQuery("SELECT U FROM Usuario U WHERE U.id = :id", Usuario.class)
-                    .setParameter("id", id)
+            
+            Usuario usuario = entityManager.createQuery("SELECT U FROM Usuario U WHERE U.correo = :correo", Usuario.class)
+                    .setParameter("correo", correo)
                     .getSingleResult();
+            return usuario;
         } catch (Exception e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
             }
             e.printStackTrace();
         } finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
+        return null;
+    }
+    */
+    
+    @Override
+    public Usuario iniciarSesion(String correo, String contrasena) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("conexionPU");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            Usuario usuario = entityManager.createQuery("SELECT U FROM Usuario U WHERE U.correo = :correo AND U.contrasena = :contrasena ", Usuario.class)
+                    .setParameter("correo", correo)
+                    .setParameter("contrasena", contrasena)
+                    .getSingleResult();
+            return usuario;
+        } catch (Exception e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        }finally {
             entityManager.close();
             entityManagerFactory.close();
         }
