@@ -4,6 +4,7 @@
  */
 package pf_appweb_persistencia_interfaces;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import pf_appweb_persistencia_entity.Usuario;
 
 /**

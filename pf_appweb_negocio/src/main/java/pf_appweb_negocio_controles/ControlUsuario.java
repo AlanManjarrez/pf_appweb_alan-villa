@@ -4,6 +4,7 @@
  */
 package pf_appweb_negocio_controles;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import pf_appweb_negocio_DTOS.UsuarioDTO;
 import pf_appweb_negocio_convertidores.Convertidor;
 import pf_appweb_negocio_interfaces.IControlUsuario;

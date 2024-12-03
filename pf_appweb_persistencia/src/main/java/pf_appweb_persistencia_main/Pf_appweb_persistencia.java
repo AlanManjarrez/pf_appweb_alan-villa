@@ -16,13 +16,14 @@ import pf_appweb_persistencia_entity.Usuario;
  */
 public class Pf_appweb_persistencia {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         System.out.println("Hello World!");
         Calendar fechaNacimiento = Calendar.getInstance();
         fechaNacimiento.set(26, Calendar.OCTOBER, 2001);
         Usuario usuario = new Usuario("admin", "admin@gmail.com", "1234", "1234", "NONE", fechaNacimiento, "---", TipoUsuario.ADMOR);
         
         UsuarioDAO usuarioDAO = new UsuarioDAO();
-        usuarioDAO.registrarUsuario(usuario);
+            usuarioDAO.registrarUsuario(usuario);
+      
     }
 }

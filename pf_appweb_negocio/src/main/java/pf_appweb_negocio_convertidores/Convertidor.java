@@ -18,12 +18,14 @@ import pf_appweb_persistencia_entity.Usuario;
  * @author Jesus Eduardo Villanueva Godoy 235078
  * @author Jose Alan Manjarrez Ontiveros 228982
  */
-public class Convertidor implements IConvertidor{
+public class Convertidor implements IConvertidor {
 
     @Override
     public Usuario dtoAUsuario(UsuarioDTO usuarioDTO) {
         Usuario usuario = new Usuario();
-        usuario.setId(usuarioDTO.getId());
+        if (usuario.getId() != null) {
+            usuario.setId(usuarioDTO.getId());
+        }
         usuario.setCorreo(usuarioDTO.getCorreo());
         usuario.setContrasena(usuarioDTO.getContrasena());
         usuario.setNombreCompleto(usuarioDTO.getNombreCompleto());
@@ -39,7 +41,9 @@ public class Convertidor implements IConvertidor{
     @Override
     public UsuarioDTO usuarioADTO(Usuario usuario) {
         UsuarioDTO usuarioDTO = new UsuarioDTO();
-        usuarioDTO.setId(usuario.getId());
+        if (usuario.getId() != null) {
+            usuarioDTO.setId(usuario.getId());
+        }
         usuarioDTO.setCorreo(usuario.getCorreo());
         usuarioDTO.setContrasena(usuario.getContrasena());
         usuarioDTO.setNombreCompleto(usuario.getNombreCompleto());

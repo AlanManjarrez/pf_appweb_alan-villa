@@ -4,6 +4,7 @@
  */
 package pf_appweb_persistencia_DAOS;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -25,12 +26,10 @@ public class UsuarioDAO implements IUsuarioDAO{
         try {
             entityManager.getTransaction().begin();
             
-            Long id = usuario.getId();
             String correo = usuario.getCorreo();
             Usuario usuarioExistente = null;
             try {
-               usuarioExistente = entityManager.createQuery("SELECT U FROM Usuario U WHERE U.id =:id AND U.correo = :correo", Usuario.class)
-                       .setParameter("id", id)
+               usuarioExistente = entityManager.createQuery("SELECT U FROM Usuario U WHERE U.correo = :correo", Usuario.class)
                        .setParameter("correo", correo)
                        .getSingleResult();
                 
@@ -42,7 +41,7 @@ public class UsuarioDAO implements IUsuarioDAO{
                 entityManager.getTransaction().commit();
                 return usuario;
             }else{
-                return null;
+                throw new SQLIntegrityConstraintViolationException("Este correo ya esta registrado");
             }
             
         } catch (Exception e) {
