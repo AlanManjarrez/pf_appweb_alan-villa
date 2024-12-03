@@ -27,7 +27,6 @@ public class Comentario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column()
     private Calendar fechaHora;
     private String contenido;
@@ -121,5 +120,4 @@ public class Comentario implements Serializable {
         this.comentarioPadre = comentarioPadre;
         this.respuestas = respuestas;
     }
-
 }
