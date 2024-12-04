@@ -1,0 +1,200 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    margin: 0;
+    padding: 0;
+    background: rgba(44, 44, 44, 1);
+    color: rgba(255, 255, 255, 1);
+}
+
+/* Contenedor Principal */
+.main-container {
+    display: grid;
+    grid-template-areas: 
+        "header header"
+        "sidebar content";
+    grid-template-columns: 300px 1fr; /* Barra lateral fija, contenido flexible */
+    grid-template-rows: auto 1fr; /* Encabezado fijo y el resto flexible */
+    height: 100vh; /* Altura completa de la ventana */
+    margin: 0;
+    background: rgba(44, 44, 44, 1);
+    color: white;
+}
+
+/* Encabezado */
+.header {
+    grid-area: header; /* Posiciona el header en la parte superior */
+    background: rgba(30, 30, 30, 1);
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Barra Lateral */
+.sidebar {
+    margin-top: 23px;
+    grid-area: sidebar; /* Posiciona la barra lateral debajo del header */
+    background: rgba(30, 30, 30, 1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 0 20px 20px 0;
+    box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.25);
+}
+
+/* Contenido Principal */
+.content {
+    grid-area: content; /* Posiciona el contenido principal a la derecha de la barra lateral */
+    background: rgba(30, 30, 30, 1);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+    overflow-y: auto;
+}
+
+.header .logo {
+    width: 43px;
+    height: 78px;
+    background: url('https://www.clipartmax.com/png/middle/225-2252629_java-duke-icon-duke-java-icon-png.png') no-repeat center center;
+    background-size: contain;
+}
+
+.header .title {
+    margin-left: 20px;
+    font-size: 21px;
+    line-height: 32px;
+    color: #FFFFFF;
+}
+
+.user-info {
+    text-align: center;
+}
+
+.user-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    background: url("C:/Users/uirtis/Documents/Proyecto_App_Web/images/user_icon.png") no-repeat center center;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.username-text {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.sidebar-button {
+    background: rgba(44, 44, 44, 1);
+    color: rgba(255, 255, 255, 1);
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.sidebar-button.logout {
+    margin-top: auto;
+}
+
+.content-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Publicaciones */
+.publication {
+    background: rgba(44, 44, 44, 1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.publication-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.publication-description {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+/* Contenedor Flexible de Contenido */
+.publication-content {
+    margin-bottom: 20px;
+}
+
+/* Código */
+.code-block {
+    background: rgba(30, 30, 30, 1);
+    padding: 15px;
+    border-radius: 10px;
+    overflow-x: auto;
+    color: #FFFFFF;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+}
+
+/* Imagen */
+.image-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.publication-image {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Botones */
+.edit-button {
+    background: rgba(30, 30, 30, 1);
+    color: rgba(255, 255, 255, 1);
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.create-post-button {
+    background: rgba(30, 30, 30, 1);
+    color: rgba(255, 255, 255, 1);
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Texto General */
+.section-title,
+.section-subtitle,
+.button-text {
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Ajustes Generales */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    color: #FFFFFF;
+}
+
+p {
+    margin: 0;
+    line-height: 1.6;
+}

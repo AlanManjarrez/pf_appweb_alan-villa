@@ -1,85 +1,97 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="pf_appweb_negocio_DTOS.UsuarioDTO"%>
+<%@ page import="pf_appweb_negocio_DTOS.PostDTO"%>
+<%@ page import="pf_appweb_negocio_DTOS.ComentarioDTO"%>
+<%@ page import="java.util.List"%>
 
+<%
+    UsuarioDTO usuarioDTO = (UsuarioDTO) session.getAttribute("usuarioDTO");
+    if (usuarioDTO == null) {
+        response.sendRedirect("Login.jsp");
+        return;
+    }
+    
+    List<PostDTO> publicaciones = (List<PostDTO>) request.getAttribute("publicaciones");
+    List<PostDTO> anclados = (List<PostDTO>) request.getAttribute("publicaciones");
+%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=JetBrains+Mono&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="proyecto_publicaciones.css">
-    <title>Publicaciones</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/proyecto_publicaciones.css">
+        <title>Publicaciones</title>
+    </head>
 
-<body>
-    <div class="main-container">
-        <div class="content-background"></div>
-        <span class="title">Publicaciones</span>
-        <header class="header">
-            <div class="logo"></div>
-            <div class="title">TutosJavaDoc</div>
-        </header>
-        <div class="javadoc-section">
-            <span class="section-title">JavaDoc</span>
-            <div class="javadoc-description">
-                <div class="description-background"></div>
-                <span class="description-text">El JavaDoc es una herramienta poderosa utilizada en el desarrollo de
-                    aplicaciones Java para documentar el código de manera estructurada y legible.</span>
-            </div>
-        </div>
-        <div class="regex-section">
-            <div class="regex-description">
-                <div class="regex-background"></div>
-                <span class="regex-text">Las expresiones regulares en Java se utilizan para buscar y validar patrones en
-                    cadenas de texto. Puedes utilizar esta funcionalidad para buscar, validar y manipular cadenas de
-                    texto de acuerdo con patrones específicos.<br><br>Ejemplo de validar un correo electrónico:</span>
-            </div>
-            <div class="code-block">
-                <div class="code-background"></div>
-                <span class="code-text">JavaScript
+    <body>
+        <!-- Contenedor principal -->
+        <div class="main-container">
 
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    const email = "ejemplo@correo.com";
+            <!-- Encabezado -->
+            <header class="header">
+                <div class="logo"></div>
+                <h1 class="title">TutosJavaDoc</h1>
+            </header>
 
-                    if (emailRegex.test(email)) {
-                    console.log("La dirección de correo es válida");
-                    } else {
-                    console.log("La dirección de correo es inválida");
-                    }</span>
-            </div>
-            <span class="section-subtitle">Expresiones regulares en Java</span>
-            <div class="divider"></div>
+            <!-- Barra lateral -->
+            <aside class="sidebar">
+                <div class="user-info">
+                    <div class="user-icon"></div>
+                    <span class="username-text">Nombre de Usuario</span>
+                </div>
+                <button class="sidebar-button">Crear Publicación</button>
+                <button class="sidebar-button">Editar Perfil</button>
+                <button class="sidebar-button logout">Cerrar Sesión</button>
+            </aside>
+
+            <!-- Contenido principal -->
+            <main class="content">
+                <h2 class="content-title">Publicaciones</h2>
+
+                <!-- Publicación individual -->
+                <section class="publication">
+                    <h3 class="publication-title">Título de Publicación</h3>
+                    <p class="publication-description">
+                        Descripción de la publicación... Aquí puedes agregar texto descriptivo de lo que se está compartiendo en esta publicación.
+                    </p>
+
+                    <!-- Bloque flexible para código, imagen o contenido adicional -->
+                    <div class="publication-content">
+                        <!-- Opcional: Código -->
+                        <pre class="code-block">
+                        <code></code>
+                        </pre>
+
+                        <!-- Opcional: Imagen -->
+                        <div class="image-container">
+                            <img src="" alt="Imagen de ejemplo" class="publication-image" />
+                        </div>
+                    </div>
+
+                    <!-- Botones de acción -->
+                    <button class="edit-button">Editar</button>
+                </section>
+
+                <!-- Publicación extra (puedes duplicar este bloque) -->
+                <section class="publication">
+                    <h3 class="publication-title">Otra Publicación</h3>
+                    <p class="publication-description">
+                        Aquí puedes agregar contenido adicional para una nueva publicación. Por ejemplo, un fragmento de texto, una imagen o cualquier información relevante.
+                    </p>
+
+                    <div class="publication-content">
+                        <!-- Ejemplo: Imagen -->
+                        <div class="image-container">
+                            <img src="ruta-a-tu-imagen.jpg" alt="Imagen de ejemplo" class="publication-image" />
+                        </div>
+                    </div>
+
+                    <button class="edit-button">Editar</button>
+                </section>
+            </main>
         </div>
-        <div class="create-post-button">
-            <div class="button-background"></div>
-            <span class="button-text-publi">Crear Publicación</span>
-        </div>
-        <div class="edit-button">
-            <div class="button-background-edit"></div>
-            <span class="button-text">Editar</span>
-        </div>
-        <div class="edit-button-second">
-            <div class="button-background-edit"></div>
-            <span class="button-text">Editar</span>
-        </div>
-        <div class="sidebar">
-            <div class="sidebar-background"></div>
-            <div class="previous-topic">
-                <div class="icon-background"></div>
-                <span class="sidebar-text">Tema Anterior</span>
-            </div>
-            <div class="next-topic">
-                <div class="icon-background"></div>
-                <span class="sidebar-text">Tema Siguiente</span>
-            </div>
-            <span class="logout-text">Cerrar Sesión</span>
-            <div class="user-info">
-                <span class="username-text">Nombre de Usuario</span>
-                <div class="user-icon"></div>
-            </div>
-        </div>
-    </div>
-</body>
+    </body>
 
 </html>
