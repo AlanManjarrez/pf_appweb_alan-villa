@@ -10,9 +10,9 @@
         response.sendRedirect("Login.jsp");
         return;
     }
-    
+
     List<PostDTO> publicaciones = (List<PostDTO>) request.getAttribute("publicaciones");
-    List<PostDTO> anclados = (List<PostDTO>) request.getAttribute("publicaciones");
+    List<PostDTO> anclados = (List<PostDTO>) request.getAttribute("anclados");
 %>
 
 <!DOCTYPE html>
@@ -38,12 +38,12 @@
             <!-- Barra lateral -->
             <aside class="sidebar">
                 <div class="user-info">
-                    <div class="user-icon"></div>
-                    <span class="username-text">Nombre de Usuario</span>
+                    <img src="<%= usuarioDTO.getAvatar() != null ? usuarioDTO.getAvatar() : "ruta/default.png" %>" alt="Avatar Usuario" class="avatar" />
+                    <span class="username-text"><%= usuarioDTO.getNombreCompleto() %></span>
                 </div>
                 <button class="sidebar-button">Crear Publicación</button>
                 <button class="sidebar-button">Editar Perfil</button>
-                <button class="sidebar-button logout">Cerrar Sesión</button>
+                <a href="LogoutServlet" class="sidebar-button logout">Cerrar Sesión</a> 
             </aside>
 
             <!-- Contenido principal -->

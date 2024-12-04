@@ -20,9 +20,9 @@ public interface IControlPost {
 
     public Boolean eliminarPost(PostDTO post);
 
-    public List<PostDTO> obtenerPost(PostDTO postDTO);
+    public List<PostDTO> obtenerPost();
 
-    public List<PostDTO> obtenerPostAnclados(PostDTO postDTO);
+    public List<PostDTO> obtenerPostAnclados();
 
     public PostDTO obtenerPostId(long id);
 }

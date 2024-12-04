@@ -23,8 +23,34 @@ public class UsuarioDTO {
     private Calendar fechaNacimiento;
     private String genero;
     private TipoUsuario tipoUsuario;
+    private String avatar;
 
     public UsuarioDTO() {
+    }
+
+    public UsuarioDTO(Long id, String nombreCompleto, String correo, String contrasena, String telefono, String domicilio, Calendar fechaNacimiento, String genero, TipoUsuario tipoUsuario, String avatar) {
+        this.id = id;
+        this.nombreCompleto = nombreCompleto;
+        this.correo = correo;
+        this.contrasena = contrasena;
+        this.telefono = telefono;
+        this.domicilio = domicilio;
+        this.fechaNacimiento = fechaNacimiento;
+        this.genero = genero;
+        this.tipoUsuario = tipoUsuario;
+        this.avatar = avatar;
+    }
+
+    public UsuarioDTO(String nombreCompleto, String correo, String contrasena, String telefono, String domicilio, Calendar fechaNacimiento, String genero, TipoUsuario tipoUsuario, String avatar) {
+        this.nombreCompleto = nombreCompleto;
+        this.correo = correo;
+        this.contrasena = contrasena;
+        this.telefono = telefono;
+        this.domicilio = domicilio;
+        this.fechaNacimiento = fechaNacimiento;
+        this.genero = genero;
+        this.tipoUsuario = tipoUsuario;
+        this.avatar = avatar;
     }
 
     public Long getId() {
@@ -98,5 +124,12 @@ public class UsuarioDTO {
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
-    
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 }

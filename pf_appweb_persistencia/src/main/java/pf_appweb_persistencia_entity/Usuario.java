@@ -7,16 +7,12 @@ package pf_appweb_persistencia_entity;
 import java.io.Serializable;
 import java.util.Calendar;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -27,7 +23,8 @@ import javax.persistence.TemporalType;
  */
 @Entity(name = "Usuario")
 public class Usuario implements Serializable {
-
+    
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -56,6 +53,9 @@ public class Usuario implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
+    
+    @Column(name = "avatar")
+    private String avatar;
 
     public Long getId() {
         return id;
@@ -133,10 +133,18 @@ public class Usuario implements Serializable {
         this.tipoUsuario = tipoUsuario;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     public Usuario() {
     }
 
-    public Usuario(Long id, String nombreCompleto, String correo, String contrasena, String telefono, String domicilio, Calendar fechaNacimiento, String genero, TipoUsuario tipoUsuario) {
+    public Usuario(Long id, String nombreCompleto, String correo, String contrasena, String telefono, String domicilio, Calendar fechaNacimiento, String genero, TipoUsuario tipoUsuario, String avatar) {
         this.id = id;
         this.nombreCompleto = nombreCompleto;
         this.correo = correo;
@@ -146,9 +154,10 @@ public class Usuario implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
         this.genero = genero;
         this.tipoUsuario = tipoUsuario;
+        this.avatar = avatar;
     }
 
-    public Usuario(String nombreCompleto, String correo, String contrasena, String telefono, String domicilio, Calendar fechaNacimiento, String genero, TipoUsuario tipoUsuario) {
+    public Usuario(String nombreCompleto, String correo, String contrasena, String telefono, String domicilio, Calendar fechaNacimiento, String genero, TipoUsuario tipoUsuario, String avatar) {
         this.nombreCompleto = nombreCompleto;
         this.correo = correo;
         this.contrasena = contrasena;
@@ -157,6 +166,6 @@ public class Usuario implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
         this.genero = genero;
         this.tipoUsuario = tipoUsuario;
+        this.avatar = avatar;
     }
-
 }

@@ -22,9 +22,9 @@ public class ControlPost implements IControlPost{
     PostDAO postDAO;
     Convertidor convertidor;
 
-    public ControlPost(PostDAO postDAO, Convertidor convertidor) {
-        this.postDAO = postDAO;
-        this.convertidor = convertidor;
+    public ControlPost() {
+        this.postDAO = new PostDAO();
+        this.convertidor = new Convertidor();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class ControlPost implements IControlPost{
     }
 
     @Override
-    public List<PostDTO> obtenerPost(PostDTO postDTO) {
+    public List<PostDTO> obtenerPost() {
         List<Post> listaPosts = this.postDAO.obtenerPost();
         List<PostDTO> listaPostsDTO = new ArrayList<>();
 
@@ -58,7 +58,7 @@ public class ControlPost implements IControlPost{
     }
 
     @Override
-    public List<PostDTO> obtenerPostAnclados(PostDTO postDTO) {
+    public List<PostDTO> obtenerPostAnclados() {
         List<Post> listaPosts = this.postDAO.obtenerPostAnclados();
         List<PostDTO> listaPostsDTO = new ArrayList<>();
 

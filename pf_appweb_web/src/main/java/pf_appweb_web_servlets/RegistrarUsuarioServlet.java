@@ -135,6 +135,7 @@ public class RegistrarUsuarioServlet extends HttpServlet {
         usuarioDTO.setTelefono(telefono);
         usuarioDTO.setDomicilio(domicilio);
         usuarioDTO.setTipoUsuario(TipoUsuario.NORMAL);
+        usuarioDTO.setAvatar(avatarPath);
 
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         Date fechaDate = null;

@@ -34,7 +34,8 @@ public class Convertidor implements IConvertidor {
         usuario.setDomicilio(usuarioDTO.getDomicilio());
         usuario.setGenero(usuarioDTO.getGenero());
         usuario.setTipoUsuario(TipoUsuario.NORMAL);
-
+        usuario.setAvatar(usuarioDTO.getAvatar());
+        
         return usuario;
     }
 
@@ -52,6 +53,7 @@ public class Convertidor implements IConvertidor {
         usuarioDTO.setDomicilio(usuario.getDomicilio());
         usuarioDTO.setGenero(usuario.getGenero());
         usuarioDTO.setTipoUsuario(TipoUsuario.NORMAL);
+        usuarioDTO.setAvatar(usuario.getAvatar());
 
         return usuarioDTO;
     }
