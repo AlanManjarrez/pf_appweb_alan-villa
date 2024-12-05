@@ -3,18 +3,19 @@
 }
 
 body {
-    font-size: 14px;
+    margin: 0px;
     font-family: 'JetBrains Mono', monospace;
-    margin: 0;
-    padding: 0;
-    background: rgba(44, 44, 44, 1);
-    color: rgba(255, 255, 255, 1);
+    background: url('https://www.muralunique.com/wp-content/uploads/2021/02/1865_v_black-and-white-marble_new.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #FFFFFF;
 }
 
 /* Contenedor Principal */
 .main-container {
     display: grid;
-    grid-template-areas: 
+    grid-template-areas:
         "header header"
         "sidebar content";
     grid-template-columns: 300px 1fr; /* Barra lateral fija, contenido flexible */
@@ -61,7 +62,7 @@ body {
 .header .logo {
     width: 43px;
     height: 78px;
-    background: url('https://www.clipartmax.com/png/middle/225-2252629_java-duke-icon-duke-java-icon-png.png') no-repeat center center;
+    background: url('https://marekhudyma.com/assets/2021-05-01-java-duke/gallery/ChezDuke.png') no-repeat center center;
     background-size: contain;
 }
 
@@ -107,6 +108,13 @@ body {
 
 .content-title {
     font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.publication-pinned{
+    background: rgba(44, 44, 44, 1);
+    border-radius: 10px;
+    padding: 20px;
     margin-bottom: 20px;
 }
 
@@ -198,3 +206,14 @@ p {
     margin: 0;
     line-height: 1.6;
 }
+.avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 80px;
+}
+

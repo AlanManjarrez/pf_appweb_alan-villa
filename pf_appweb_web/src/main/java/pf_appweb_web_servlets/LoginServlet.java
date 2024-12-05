@@ -23,7 +23,7 @@ import pf_appweb_negocio_controles.ControlUsuario;
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
-    
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -62,7 +62,8 @@ public class LoginServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
             String correo = request.getParameter("email");
             String password = request.getParameter("password");
@@ -72,11 +73,10 @@ public class LoginServlet extends HttpServlet {
 
             if (usuarioDTO == null) {
                 response.sendRedirect("Login.jsp?error=incorrectCredentials");
-            } else {
-                HttpSession session = request.getSession();
-                session.setAttribute("usuario", usuarioDTO);
-                response.sendRedirect("Publicaciones.jsp");
             }
+            HttpSession session = request.getSession();
+            session.setAttribute("usuarioDTO", usuarioDTO);
+            response.sendRedirect("Publicaciones.jsp");
 
         } catch (Exception e) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, e);
@@ -94,10 +94,10 @@ public class LoginServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         processRequest(request, response);
-        
     }
-    
+
     /**
      * Returns a short description of the servlet.
      *

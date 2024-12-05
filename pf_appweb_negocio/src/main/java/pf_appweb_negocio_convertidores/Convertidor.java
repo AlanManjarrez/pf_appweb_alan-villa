@@ -33,7 +33,13 @@ public class Convertidor implements IConvertidor {
         usuario.setTelefono(usuarioDTO.getTelefono());
         usuario.setDomicilio(usuarioDTO.getDomicilio());
         usuario.setGenero(usuarioDTO.getGenero());
-        usuario.setTipoUsuario(TipoUsuario.NORMAL);
+        
+        if (usuarioDTO.getTipoUsuario() == TipoUsuario.ADMOR) {
+            usuario.setTipoUsuario(TipoUsuario.ADMOR);
+        }else{
+            usuario.setTipoUsuario(TipoUsuario.NORMAL);
+            
+        }
         usuario.setAvatar(usuarioDTO.getAvatar());
         
         return usuario;
@@ -52,7 +58,12 @@ public class Convertidor implements IConvertidor {
         usuarioDTO.setTelefono(usuario.getTelefono());
         usuarioDTO.setDomicilio(usuario.getDomicilio());
         usuarioDTO.setGenero(usuario.getGenero());
-        usuarioDTO.setTipoUsuario(TipoUsuario.NORMAL);
+        
+        if (usuario.getTipoUsuario() == TipoUsuario.ADMOR) {
+            usuarioDTO.setTipoUsuario(TipoUsuario.ADMOR);
+        }else{
+            usuarioDTO.setTipoUsuario(TipoUsuario.NORMAL);
+        }
         usuarioDTO.setAvatar(usuario.getAvatar());
 
         return usuarioDTO;

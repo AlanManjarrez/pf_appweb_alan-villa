@@ -109,8 +109,8 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
         return null;
     }
-    /**
-    @Override
+    
+    
     public Usuario obtenerUsuarioCorreo(String correo) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("conexionPU");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -132,7 +132,7 @@ public class UsuarioDAO implements IUsuarioDAO{
         }
         return null;
     }
-    */
+    
     
     @Override
     public Usuario iniciarSesion(String correo, String contrasena) {
