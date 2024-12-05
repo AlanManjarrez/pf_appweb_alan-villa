@@ -26,7 +26,7 @@
             <h2>Iniciar Sesión</h2>
 
             <!-- Formulario -->
-            <form action="LoginServlet" method="get" enctype="multipart/form-data">
+            <form id="login-form" action="LoginServlet" method="POST">
                 <!-- Grupo de campos: Email -->
                 <div class="form-group">
                     <label for="email">Email:</label>
@@ -43,18 +43,7 @@
                 <button type="submit" class="form-button">Iniciar Sesión</button>
 
                 <!-- Mensajes de error -->
-                <%
-                    String error = request.getParameter("error");
-                    if ("incorrectCredentials".equals(error)) {
-                %>
-                <p style="color: white;">Correo o contraseña incorrectos. Inténtalo de nuevo.</p>
-                <%
-                } else if ("internalError".equals(error)) {
-                %>
-                <p style="color: white;">Ocurrió un error interno. Inténtalo más tarde.</p>
-                <%
-                    }
-                %>
+                <div id="error-message" class="error-message" style="color: white; text-align: center; display: none;"></div>
             </form>
             <section class="sign-boton-container">
                 <div class="sign-boton">
@@ -63,4 +52,5 @@
             </section>
         </main>
     </body>
+    <script src="Scripts/Login.js"></script>
 </html>

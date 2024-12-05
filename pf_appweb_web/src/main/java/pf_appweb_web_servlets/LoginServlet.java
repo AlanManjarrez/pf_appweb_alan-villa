@@ -4,6 +4,8 @@
  */
 package pf_appweb_web_servlets;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,6 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.BufferedReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pf_appweb_negocio_DTOS.UsuarioDTO;
@@ -63,25 +66,7 @@ public class LoginServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        try {
-            String correo = request.getParameter("email");
-            String password = request.getParameter("password");
-
-            ControlUsuario controlUsuario = new ControlUsuario();
-            UsuarioDTO usuarioDTO = controlUsuario.iniciarSesion(correo, password);
-
-            if (usuarioDTO == null) {
-                response.sendRedirect("Login.jsp?error=incorrectCredentials");
-            }
-            HttpSession session = request.getSession();
-            session.setAttribute("usuarioDTO", usuarioDTO);
-            response.sendRedirect("Publicaciones.jsp");
-
-        } catch (Exception e) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, e);
-            response.sendRedirect("Login.jsp?error=internalError");
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -94,8 +79,40 @@ public class LoginServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        JsonObject jsonResponse = new JsonObject();
+       
+        try {
+            BufferedReader reader = request.getReader();
+            JsonObject requestBody = JsonParser.parseReader(reader).getAsJsonObject();
 
-        processRequest(request, response);
+            String email = requestBody.get("email").getAsString();
+            String password = requestBody.get("password").getAsString();
+
+            ControlUsuario controlUsuario = new ControlUsuario();
+            UsuarioDTO usuarioDTO = controlUsuario.iniciarSesion(email, password);
+
+            if (usuarioDTO == null) {
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                jsonResponse.addProperty("error", "Correo o contraseña incorrectos.");
+                jsonResponse.addProperty("url_redirect", "Login.jsp");
+            }
+            HttpSession session = request.getSession();
+            session.setAttribute("usuarioDTO", usuarioDTO);
+
+            jsonResponse.addProperty("success", true);
+            jsonResponse.addProperty("message", "Inicio de sesión exitoso.");
+            jsonResponse.addProperty("url_redirect", "Publicaciones.jsp");
+
+        } catch (Exception e) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, e);
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            jsonResponse.addProperty("error", "Ocurrió un error interno. Inténtalo más tarde.");
+            //jsonResponse.addProperty("url_redirect", "Login.jsp");
+        }
+        
+        response.getWriter().write(jsonResponse.toString());
     }
 
     /**

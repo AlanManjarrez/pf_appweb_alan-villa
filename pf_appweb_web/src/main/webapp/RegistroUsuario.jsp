@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/proyecto_registro.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <title>Registro</title>
     </head>
 
@@ -24,7 +25,7 @@
                     <h2 class="titulo-registro">Registro</h2>
 
                     <!-- Form -->
-                    <form class="form-content" action="RegistrarUsuarioServlet" method="post" enctype="multipart/form-data">
+                    <form id="login-form" class="form-content" action="RegistrarUsuarioServlet" method="post" enctype="multipart/form-data">
 
                         <!-- Success/Error Message -->
                         <c:if test="${not empty mensaje}">

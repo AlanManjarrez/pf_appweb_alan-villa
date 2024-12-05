@@ -4,6 +4,7 @@
  */
 package pf_appweb_web_servlets;
 
+import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -88,6 +89,10 @@ public class RegistrarUsuarioServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        JsonObject responseJson = new JsonObject();
+
         String nombre = request.getParameter("nombre");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -156,21 +161,23 @@ public class RegistrarUsuarioServlet extends HttpServlet {
             usuarioDTO = controlUsuario.registrarUsuario(usuarioDTO);
 
             if (usuarioDTO != null) {
-                request.setAttribute("mensaje", "Usuario registrado correctamente.");
-                request.setAttribute("tipoMensaje", "success");
-                response.sendRedirect("Login.jsp");
+                responseJson.addProperty("success", true);
+                responseJson.addProperty("message", "Usuario registrado correctamente.");
+                responseJson.addProperty("url_redirect", "Login.jsp");
+                //response.sendRedirect("Login.jsp");
             } else {
-                request.setAttribute("mensaje", "No se pudo registrar el usuario. Inténtalo nuevamente.");
-                request.setAttribute("tipoMensaje", "error");
-                request.getRequestDispatcher("RegistroUsuario.jsp").forward(request, response);
+                responseJson.addProperty("success", false);
+                responseJson.addProperty("message", "No se pudo registrar el usuario. Inténtalo nuevamente.");
+                responseJson.addProperty("url_redirect", "RegistrarUsuario.jsp");
             }
         } catch (Exception e) {
             // Manejar otros errores
             e.printStackTrace();
-            request.setAttribute("mensaje", "Ocurrió un error inesperado. Inténtalo nuevamente.");
-            request.setAttribute("tipoMensaje", "error");
-            request.getRequestDispatcher("RegistroUsuario.jsp").forward(request, response);
+            responseJson.addProperty("success", false);
+            responseJson.addProperty("message", "Ocurrió un error inesperado. Inténtalo nuevamente.");
+            responseJson.addProperty("url_redirect", "RegistrarUsuario.jsp");
         }
+        response.getWriter().write(responseJson.toString());
     }
 
     private String getFileName(Part part) {
