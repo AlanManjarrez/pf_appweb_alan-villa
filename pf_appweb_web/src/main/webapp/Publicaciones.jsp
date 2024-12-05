@@ -49,9 +49,9 @@
                     <% } %>
 
                 </div>
-                    
+
                 <button class="sidebar-button">Crear Publicación</button>
-                <% if(usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.ADMOR.toString())) {%>
+                <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.ADMOR.toString())) {%>
                 <button class="sidebar-button">Crear Publicación Anclada</button>
                 <% } %>
                 <button class="sidebar-button">Editar Perfil</button>
@@ -61,28 +61,24 @@
 
             <!-- Contenido principal -->
             <main class="content">
-                <h2 class="content-title">Publicaciones</h2>
+                <h2 class="content-title">Publicaciones Ancladas</h2>
 
                 <!-- Publicación anclada -->
                 <section class="publication-pinned">
-                    <% if(anclados != null && !anclados.isEmpty()) {
-                        for (PostDTO postDTO : anclados) {%>
-                        <h3 class="publication-title"><%= postDTO.getTitulo() %></h3>
-                    <p class="publication-description">
-                        Descripción de la publicación... Aquí puedes agregar texto descriptivo de lo que se está compartiendo en esta publicación.
-                    </p>
-                    <% }} %>
+                    <% if (anclados != null && !anclados.isEmpty()) {
+                            for (PostDTO postDTO : anclados) {%>
+                    <p class="publication-title"><%= postDTO.getTitulo()%></p>
+                    <p class="publication-description"><%= postDTO.getContenido()%></p>
+                    <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.ADMOR.toString())) {%>
+                    <button class="delete-button" onclick="eliminarPost(<%= postDTO.getId()%>)">Eliminar</button>
+
+                    <% } %>
+                    <% }
+                    } else {%>
+                    <p class="publication-title">No hay Publicaciones Ancladas</p>
+                    <% } %>
                     <!-- Bloque flexible para código, imagen o contenido adicional -->
                     <div class="publication-content">
-                        <!-- Opcional: Código -->
-                        <pre class="code-block">
-                        <code></code>
-                        </pre>
-
-                        <!-- Opcional: Imagen -->
-                        <div class="image-container">
-                            <img src="" alt="Imagen de ejemplo" class="publication-image" />
-                        </div>
                     </div>
 
                     <!-- Botones de acción -->
@@ -90,20 +86,25 @@
                 </section>
 
                 <!-- Publicación extra (puedes duplicar este bloque) -->
+                <h2 class="content-title">Publicaciones Recientes</h2>
                 <section class="publication">
-                    <h3 class="publication-title">Otra Publicación</h3>
-                    <p class="publication-description">
-                        Aquí puedes agregar contenido adicional para una nueva publicación. Por ejemplo, un fragmento de texto, una imagen o cualquier información relevante.
-                    </p>
-
-                    <div class="publication-content">
-                        <!-- Ejemplo: Imagen -->
-                        <div class="image-container">
-                            <img src="ruta-a-tu-imagen.jpg" alt="Imagen de ejemplo" class="publication-image" />
-                        </div>
-                    </div>
-
-                    <button class="edit-button">Editar</button>
+                    <% if (publicaciones != null && !publicaciones.isEmpty()) {
+                            boolean hayPublicaciones = false;
+                            for (PostDTO postDTO : publicaciones) {
+                                if (!postDTO.getAnclado()) {
+                                            hayPublicaciones = true;
+                    %>
+                    <p class="publication-title"><%= postDTO.getTitulo() %></p>
+                    <p class="publication-description"><%= postDTO.getContenido()%></p>
+                    <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.ADMOR.toString())) {%>
+                    <button class="delete-button" onclick="eliminarPost(<%= postDTO.getId() %>)">Borrar</button>
+                    <% } %>
+                    <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.NORMAL.toString())) {%>
+                    <button class="edit-button" onclick="editarPost(<%= postDTO.getId() %>)">Editar</button>
+                    <% } %>
+                    
+                    <% } } } %>
+                    
                 </section>
             </main>
         </div>

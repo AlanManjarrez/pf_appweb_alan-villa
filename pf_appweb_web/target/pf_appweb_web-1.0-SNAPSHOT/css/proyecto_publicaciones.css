@@ -107,8 +107,13 @@ body {
 }
 
 .content-title {
+    background: rgba(44, 44, 44, 1);
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: left;
     font-size: 24px;
     margin-bottom: 20px;
+    display: inline-block;
 }
 
 .publication-pinned{
@@ -127,8 +132,14 @@ body {
 }
 
 .publication-title {
-    font-size: 20px;
+    font-size: 17px;
     margin-bottom: 10px;
+    background: rgba(30, 30, 30, 1);
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: left;
+    margin-bottom: 20px;
+    display: inline-block;
 }
 
 .publication-description {
@@ -166,6 +177,17 @@ body {
 
 /* Botones */
 .edit-button {
+    background: rgba(30, 30, 30, 1);
+    color: rgba(255, 255, 255, 1);
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.delete-button{
     background: rgba(30, 30, 30, 1);
     color: rgba(255, 255, 255, 1);
     padding: 10px 20px;
