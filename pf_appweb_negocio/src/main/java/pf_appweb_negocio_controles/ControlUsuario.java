@@ -42,13 +42,13 @@ public class ControlUsuario implements IControlUsuario {
         UsuarioDTO usuarioDTO = convertidor.usuarioADTO(this.usuarioDAO.eliminarUsuario(convertidor.dtoAUsuario(usuario)));
         return usuarioDTO;
     }
-    /*
+    
     @Override
     public UsuarioDTO obtenerUsuario(String correo) {
-        UsuarioDTO usuarioDTO = convertidor.usuarioADTO(this.usuarioDAO.obtenerUsuario(correo));
+        UsuarioDTO usuarioDTO = convertidor.usuarioADTO(this.usuarioDAO.obtenerUsuarioCorreo(correo));
         return usuarioDTO;
     }
-    */
+    
 
     @Override
     public UsuarioDTO iniciarSesion(String correo, String contrasena) {

@@ -72,7 +72,7 @@
                 <section class="publication-pinned">
                     <% if (anclados != null && !anclados.isEmpty()) {
                             for (PostDTO postDTO : anclados) {%>
-                    <a href="Comentarios.jsp" class="publication-title"><%= postDTO.getTitulo()%></a>
+                    <p class="publication-title"><%= postDTO.getTitulo()%></p>
                     <p class="publication-description"><%= postDTO.getContenido()%></p>
                     <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.ADMOR.toString())) {%>
                     <button class="delete-button" onclick="eliminarPost(<%= postDTO.getId()%>)">Eliminar</button>
@@ -100,7 +100,7 @@
                                     hayPublicaciones = true;
                     %>
                     <section class="content-publication">
-                        <h3 class="publication-title"><%= postDTO.getTitulo()%></h3>
+                        <a href="Comentarios.jsp" class="publication-title"><%= postDTO.getTitulo()%></a>
                         <p class="publication-description"><%= postDTO.getContenido()%></p>
                         <%
                             Calendar fechaHoraCreacion = postDTO.getFechaHoraCreacion();

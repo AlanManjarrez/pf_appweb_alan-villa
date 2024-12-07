@@ -26,23 +26,32 @@ public class Pf_appweb_persistencia {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         PostDAO postDAO = new PostDAO();
         ComentarioDAO comentarioDAO = new ComentarioDAO();
+
         Calendar fechaNacimiento = Calendar.getInstance();
         Calendar fechaCreacion = Calendar.getInstance();
         Calendar fechaEdicion = Calendar.getInstance();
         List<Comentario> comentarios = new ArrayList<>();
-        fechaCreacion.set(3, Calendar.DECEMBER, 2024);
-        fechaEdicion.set(6, Calendar.DECEMBER, 2024);
-        fechaNacimiento.set(26, Calendar.OCTOBER, 2001);
-        Usuario usuario = new Usuario("admin", "admin@gmail.com", "1234", "1234", "NONE", fechaNacimiento, "---", TipoUsuario.ADMOR, "ruta/default.png");
-        Post post = new Post(fechaCreacion, "Titulo", "Contenido", fechaEdicion, Boolean.FALSE, usuarioDAO.obtenerUsuarioCorreo(usuario.getCorreo()), comentarios);
-        Comentario comentario = new Comentario(fechaEdicion, "Contenido", post, usuario);
-        
-        
 
+        fechaCreacion.set(2024, Calendar.DECEMBER, 3);
+        fechaEdicion.set(2024, Calendar.DECEMBER, 6);
+        fechaNacimiento.set(2001, Calendar.OCTOBER, 26);
+
+        Usuario usuario = new Usuario("admin", "admin@gmail.com", "1234", "1234", "NONE", fechaNacimiento, "---", TipoUsuario.ADMOR, "ruta/default.png");
         //usuarioDAO.registrarUsuario(usuario);
-        //System.out.println(usuarioDAO.obtenerUsuarioCorreo(usuario.getCorreo()));
-        //System.out.println(usuarioDAO.iniciarSesion(usuario.getCorreo(), usuario.getContrasena()));
-        //System.out.println(postDAO.crearPost(post));
+
+        Post post = new Post(fechaCreacion, "Titulo", "Contenido", fechaEdicion, Boolean.FALSE, usuarioDAO.obtenerUsuarioCorreo(usuario.getCorreo()), comentarios);
+
+       postDAO.crearPost(post); 
+        if (post != null && post.getId() != null) {
+            System.out.println("Post creado con ID: " + post.getId());
+        } else {
+            System.out.println("Error al crear el post.");
+            return;
+        }
+
+        Comentario comentario = new Comentario(fechaEdicion, "Contenido", post, usuarioDAO.obtenerUsuarioCorreo(usuario.getCorreo()));
+
+        // Crear comentario
         System.out.println(comentarioDAO.crearComentario(comentario));
     }
 }

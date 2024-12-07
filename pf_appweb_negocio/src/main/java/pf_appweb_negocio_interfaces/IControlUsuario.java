@@ -20,7 +20,7 @@ public interface IControlUsuario {
 
     public UsuarioDTO eliminarUsuario(UsuarioDTO usuario);
 
-    //public UsuarioDTO obtenerUsuario(String correo);
+    public UsuarioDTO obtenerUsuario(String correo);
     
     public UsuarioDTO iniciarSesion(String correo, String contrasena);
 }

@@ -23,7 +23,7 @@ public class PostDTO {
     private Calendar fechaHoraCreacion;
     private Boolean Anclado;
     private UsuarioDTO usuario;
-    private List<Comentario> comentarios;
+    private List<ComentarioDTO> comentarios;
 
     public PostDTO() {
     }
@@ -83,11 +83,11 @@ public class PostDTO {
         this.usuario = usuario;
     }
 
-    public List<Comentario> getComentarios() {
+    public List<ComentarioDTO> getComentarios() {
         return comentarios;
     }
 
-    public void setComentarios(List<Comentario> comentarios) {
+    public void setComentarios(List<ComentarioDTO> comentarios) {
         this.comentarios = comentarios;
     }
 

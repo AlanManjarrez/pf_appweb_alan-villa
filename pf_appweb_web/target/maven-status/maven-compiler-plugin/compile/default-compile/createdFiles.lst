@@ -1,5 +1,6 @@
 pf_appweb_web_servlets\PublicacionesServlet.class
 pf_appweb_web_servlets\RegistrarUsuarioServlet.class
+pf_appweb_web_servlets\BorrarComentarioServlet.class
 pf_appweb_web_jakarta\JakartaRestConfiguration.class
 pf_appweb_web_servlets\BorrarPublicacionServlet.class
 pf_appweb_web_servlets\LoginServlet.class

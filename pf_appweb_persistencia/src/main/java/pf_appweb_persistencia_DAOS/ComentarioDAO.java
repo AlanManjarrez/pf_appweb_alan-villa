@@ -25,7 +25,7 @@ public class ComentarioDAO implements IComentarioDAO {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             if (comentario.getPost().getId() == null) {
-                throw new IllegalArgumentException("El ID del post no puede ser nulo."+comentario.getPost().getId());
+                throw new IllegalArgumentException("El ID del post no puede ser nulo."+comentario.getPost().getId()+comentario.getPost().getTitulo());
             }
             entityManager.getTransaction().begin();
             Post postExistente = entityManager.find(Post.class, comentario.getPost().getId());
