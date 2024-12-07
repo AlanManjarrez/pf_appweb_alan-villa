@@ -4,6 +4,8 @@
 <%@ page import="pf_appweb_negocio_DTOS.PostDTO"%>
 <%@ page import="pf_appweb_negocio_DTOS.ComentarioDTO"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Calendar" %>
 
 <%
     UsuarioDTO usuarioDTO = (UsuarioDTO) session.getAttribute("usuarioDTO");
@@ -12,8 +14,9 @@
         return;
     }
 
-    List<PostDTO> publicaciones = (List<PostDTO>) request.getAttribute("publicaciones");
-    List<PostDTO> anclados = (List<PostDTO>) request.getAttribute("anclados");
+    List<PostDTO> publicaciones = (List<PostDTO>) session.getAttribute("publicaciones");
+    List<PostDTO> anclados = (List<PostDTO>) session.getAttribute("anclados");
+    //System.out.println(publicaciones);
 %>
 
 <!DOCTYPE html>
@@ -23,6 +26,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/proyecto_publicaciones.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <title>Publicaciones</title>
     </head>
 
@@ -51,12 +55,11 @@
                 </div>
 
                 <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.ADMOR.toString())) {%>
-                <a href="CrearPublicacionAnclada.jsp" class="sidebar-button">Crear Publicación Anclada</a>
+                <a href="CrearPublicacion.jsp" class="sidebar-button">Crear Publicación Anclada</a>
                 <% } %>
                 <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.NORMAL.toString())) {%>
                 <a href="CrearPublicacion.jsp" class="sidebar-button">Crear Publicación</a>
                 <% } %>
-                <button class="sidebar-button">Editar Perfil</button>
 
                 <a href="LogoutServlet" class="sidebar-button logout">Cerrar Sesión</a> 
             </aside>
@@ -73,7 +76,6 @@
                     <p class="publication-description"><%= postDTO.getContenido()%></p>
                     <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.ADMOR.toString())) {%>
                     <button class="delete-button" onclick="eliminarPost(<%= postDTO.getId()%>)">Eliminar</button>
-
                     <% } %>
                     <% }
                     } else {%>
@@ -85,6 +87,7 @@
 
                     <!-- Botones de acción -->
                     <button class="edit-button">Editar</button>
+
                 </section>
 
                 <!-- Publicación extra (puedes duplicar este bloque) -->
@@ -94,23 +97,31 @@
                             boolean hayPublicaciones = false;
                             for (PostDTO postDTO : publicaciones) {
                                 if (!postDTO.getAnclado()) {
-                                            hayPublicaciones = true;
+                                    hayPublicaciones = true;
                     %>
-                    <p class="publication-title"><%= postDTO.getTitulo() %></p>
-                    <p class="publication-description"><%= postDTO.getContenido()%></p>
+                    <section class="content-publication">
+                        <h3 class="publication-title"><%= postDTO.getTitulo()%></h3>
+                        <p class="publication-description"><%= postDTO.getContenido()%></p>
+                        <%
+                            Calendar fechaHoraCreacion = postDTO.getFechaHoraCreacion();
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                            String fechaFormateada = sdf.format(fechaHoraCreacion.getTime());
+                        %>
+                        <p class="publication-date"><%= fechaFormateada%></p>
+                    </section>
                     <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.ADMOR.toString())) {%>
-                    <button class="delete-button" onclick="eliminarPost(<%= postDTO.getId() %>)">Borrar</button>
+                    <button class="delete-button" onclick="eliminarPost(<%= postDTO.getId()%>)">Borrar</button>
                     <% } %>
                     <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.NORMAL.toString())) {%>
-                    <button class="edit-button" onclick="editarPost(<%= postDTO.getId() %>)">Editar</button>
+                    <button class="edit-button" onclick="editarPost(<%= postDTO.getId()%>)">Editar</button>
                     <% } %>
                     <% if (!hayPublicaciones) {%>
                     <p class="publication-title">No hay Publicaciones Recientes</p>
-                    <% }else{ %>  
-                    <p class="publication-title">No hay Publicaciones Recientes</p>
-                    <% } %>
-                    <% } } } %>
-                    
+                    <% }%>  
+                    <% }
+                            }
+                        }%>
+
                 </section>
             </main>
         </div>

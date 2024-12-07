@@ -23,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import pf_appweb_negocio_DTOS.UsuarioDTO;
 import pf_appweb_negocio_controles.ControlUsuario;
+import pf_appweb_negocio_interfaces.IControlUsuario;
 import pf_appweb_persistencia_entity.TipoUsuario;
 
 /**
@@ -155,7 +156,7 @@ public class RegistrarUsuarioServlet extends HttpServlet {
         usuarioDTO.setFechaNacimiento(fechaCalendar);
         usuarioDTO.setGenero(genero);
 
-        ControlUsuario controlUsuario = new ControlUsuario();
+        IControlUsuario controlUsuario = new ControlUsuario();
 
         try {
             usuarioDTO = controlUsuario.registrarUsuario(usuarioDTO);

@@ -18,7 +18,9 @@ import java.io.BufferedReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pf_appweb_negocio_DTOS.UsuarioDTO;
+import pf_appweb_negocio_controles.ControlPost;
 import pf_appweb_negocio_controles.ControlUsuario;
+import pf_appweb_negocio_interfaces.IControlUsuario;
 
 /**
  *
@@ -82,15 +84,15 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         JsonObject jsonResponse = new JsonObject();
-       
+
         try {
             BufferedReader reader = request.getReader();
             JsonObject requestBody = JsonParser.parseReader(reader).getAsJsonObject();
 
             String email = requestBody.get("email").getAsString();
             String password = requestBody.get("password").getAsString();
-
-            ControlUsuario controlUsuario = new ControlUsuario();
+            ControlPost controlPost = new ControlPost();
+            IControlUsuario controlUsuario = new ControlUsuario();
             UsuarioDTO usuarioDTO = controlUsuario.iniciarSesion(email, password);
 
             if (usuarioDTO == null) {
@@ -100,7 +102,11 @@ public class LoginServlet extends HttpServlet {
             }
             HttpSession session = request.getSession();
             session.setAttribute("usuarioDTO", usuarioDTO);
-
+            session.setAttribute("publicaciones", controlPost.obtenerPost());
+            session.setAttribute("anclados", controlPost.obtenerPostAnclados());
+            System.out.println(controlPost.obtenerPost());
+            
+            
             jsonResponse.addProperty("success", true);
             jsonResponse.addProperty("message", "Inicio de sesión exitoso.");
             jsonResponse.addProperty("url_redirect", "Publicaciones.jsp");
@@ -111,7 +117,7 @@ public class LoginServlet extends HttpServlet {
             jsonResponse.addProperty("error", "Ocurrió un error interno. Inténtalo más tarde.");
             //jsonResponse.addProperty("url_redirect", "Login.jsp");
         }
-        
+
         response.getWriter().write(jsonResponse.toString());
     }
 

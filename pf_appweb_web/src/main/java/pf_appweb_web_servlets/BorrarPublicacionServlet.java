@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import pf_appweb_negocio_controles.ControlPost;
+import pf_appweb_negocio_interfaces.IControlPost;
 
 /**
  *
@@ -56,13 +57,13 @@ public class BorrarPublicacionServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String postIdParam = request.getParameter("postId");
 
         try {
             if (postIdParam != null) {
                 long postId = Long.parseLong(postIdParam);
-                ControlPost controlPost = new ControlPost();
+                IControlPost controlPost = new ControlPost();
 
                 boolean isDeleted = controlPost.eliminarPost(postId);
 
@@ -79,10 +80,9 @@ public class BorrarPublicacionServlet extends HttpServlet {
             response.sendRedirect("PublicacionesServlet?error=internalError");
         }
     }
-    
-     @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         String postIdParam = request.getParameter("postId");
 
         response.setContentType("application/json");
@@ -91,7 +91,7 @@ public class BorrarPublicacionServlet extends HttpServlet {
         try {
             if (postIdParam != null) {
                 long postId = Long.parseLong(postIdParam);
-                ControlPost controlPost = new ControlPost();
+                IControlPost controlPost = new ControlPost();
 
                 boolean isDeleted = controlPost.eliminarPost(postId);
 
@@ -112,8 +112,7 @@ public class BorrarPublicacionServlet extends HttpServlet {
             response.getWriter().write("{\"error\": \"Error interno del servidor.\"}");
         }
     }
-    
-    
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *

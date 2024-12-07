@@ -1,3 +1,4 @@
+<%@page import="pf_appweb_negocio_DTOS.TipoUsuarioDTO"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="pf_appweb_negocio_DTOS.UsuarioDTO"%>
 <%
@@ -16,7 +17,7 @@
         <link rel="stylesheet" href="css/proyecto_crear_publicacion.css"/>
         <title>Crear Publiación</title>
     </head>
-         <body>
+    <body>
         <!-- Encabezado -->
         <header class="header">
             <div class="logo"></div>
@@ -27,7 +28,7 @@
         <main class="form-container">
             <!-- Título del formulario -->
             <h2>Crear Publiación</h2>
-
+            
             <!-- Formulario -->
             <form id="createpost-form" action="CrearPublicacionServlet" method="POST">
                 <!-- Grupo de campos: Titulo -->
@@ -41,7 +42,16 @@
                     <label for="contenido">Contenido:</label>
                     <textarea class="campo-create" id="contenido" name="contenido" rows="10" cols="51" placeholder="Ingresa una descripción"></textarea>
                 </div>
-
+                
+                <!-- Grupo de campos: Anclado -->
+                <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.ADMOR.toString())) { %>
+                <div class="form-group">
+                    <label for="anclado">Anclado:</label>
+                    <input class="campo-checkbox" type="checkbox" id="anclado" name="anclado" value="ON" />
+                </div>
+                <% } %> 
+                
+                
                 <!-- Botón de enviar -->
                 <button type="submit" class="form-button">Crear Publicación</button>
 

@@ -11,9 +11,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.Calendar;
 import pf_appweb_negocio_DTOS.PostDTO;
+import pf_appweb_negocio_DTOS.TipoUsuarioDTO;
 import pf_appweb_negocio_DTOS.UsuarioDTO;
 import pf_appweb_negocio_controles.ControlPost;
+import pf_appweb_negocio_interfaces.IControlPost;
 
 /**
  *
@@ -79,31 +83,38 @@ public class CrearPublicacionServlet extends HttpServlet {
             String titulo = request.getParameter("titulo");
             String contenido = request.getParameter("contenido");
             String ancladoParam = request.getParameter("anclado");
-
-            boolean anclado = "true".equalsIgnoreCase(ancladoParam);
-
+            
             UsuarioDTO usuarioDTO = (UsuarioDTO) request.getSession().getAttribute("usuarioDTO");
+            
+            System.out.println(ancladoParam);
+            
             if (usuarioDTO == null) {
-                // Respuesta JSON en caso de que el usuario no esté autenticado
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 response.getWriter().write("{\"success\": false, \"message\": \"Usuario no autenticado. Por favor inicie sesión.\"}");
                 return;
             }
 
-            // Crear el PostDTO con los datos recibidos
             PostDTO postDTO = new PostDTO();
             postDTO.setTitulo(titulo);
             postDTO.setContenido(contenido);
             postDTO.setUsuario(usuarioDTO);
-            postDTO.setAnclado(anclado);
+            postDTO.setFechaHoraCreacion(Calendar.getInstance());
+            
+            if (ancladoParam == null) {
+                ancladoParam = "OFF";
+            }
+            postDTO.setAnclado(ancladoParam.equalsIgnoreCase("ON"));
 
-            // Procesar la creación del post
-            ControlPost controlPost = new ControlPost();
+            IControlPost controlPost = new ControlPost();
             boolean exito = controlPost.crearPost(postDTO);
+            HttpSession session = request.getSession();
+            session.setAttribute("publicaciones", controlPost.obtenerPost());
+            session.setAttribute("anclados", controlPost.obtenerPostAnclados());
 
             if (exito) {
                 response.setStatus(HttpServletResponse.SC_OK);
                 response.getWriter().write("{\"success\": true, \"message\": \"Publicación creada con éxito.\"}");
+                response.sendRedirect("PublicacionesServlet");
             } else {
                 response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
                 response.getWriter().write("{\"success\": false, \"message\": \"Error al crear la publicación.\"}");

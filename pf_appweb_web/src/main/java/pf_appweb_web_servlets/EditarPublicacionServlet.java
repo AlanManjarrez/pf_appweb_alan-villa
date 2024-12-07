@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import pf_appweb_negocio_DTOS.PostDTO;
 import pf_appweb_negocio_controles.ControlPost;
+import pf_appweb_negocio_interfaces.IControlPost;
 
 /**
  *
@@ -107,7 +108,7 @@ public class EditarPublicacionServlet extends HttpServlet {
             String titulo = jsonBody.get("titulo").getAsString();
             String contenido = jsonBody.get("contenido").getAsString();
 
-            ControlPost controlPost = new ControlPost();
+            IControlPost controlPost = new ControlPost();
             PostDTO postDTO = controlPost.obtenerPostId(postId);
 
             if (postDTO == null) {

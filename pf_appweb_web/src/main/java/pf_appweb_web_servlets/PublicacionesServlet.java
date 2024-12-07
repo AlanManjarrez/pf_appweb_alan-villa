@@ -15,6 +15,7 @@ import java.util.List;
 import pf_appweb_negocio_DTOS.PostDTO;
 import pf_appweb_negocio_DTOS.UsuarioDTO;
 import pf_appweb_negocio_controles.ControlPost;
+import pf_appweb_negocio_interfaces.IControlPost;
 
 /**
  *
@@ -66,12 +67,13 @@ public class PublicacionesServlet extends HttpServlet {
             return;
         }
         try {
-            ControlPost controlPost = new ControlPost();
+            IControlPost controlPost = new ControlPost();
             List<PostDTO> publicaciones = controlPost.obtenerPost();
             List<PostDTO> publicacionesAncladas = controlPost.obtenerPostAnclados();
+            System.out.println("Aqui"+publicaciones.size());
             
             request.setAttribute("publicaciones", publicaciones);
-            request.setAttribute("ancladas", publicacionesAncladas);
+            request.setAttribute("anclados", publicacionesAncladas);
             
             request.getRequestDispatcher("Publicaciones.jsp").forward(request, response);
         } catch (Exception e) {

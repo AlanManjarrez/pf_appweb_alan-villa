@@ -1,15 +1,17 @@
+/* General */
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0px;
     font-family: 'JetBrains Mono', monospace;
-    background: url('https://www.muralunique.com/wp-content/uploads/2021/02/1865_v_black-and-white-marble_new.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: url('https://www.muralunique.com/wp-content/uploads/2021/02/1865_v_black-and-white-marble_new.jpg') no-repeat center center fixed;
+    background-size: cover;
     color: #FFFFFF;
+    height: 100%;
+    overflow-x: hidden;
 }
 
 /* Contenedor Principal */
@@ -19,233 +21,180 @@ body {
         "header header"
         "sidebar content";
     grid-template-columns: 300px 1fr; /* Barra lateral fija, contenido flexible */
-    grid-template-rows: auto 1fr; /* Encabezado fijo y el resto flexible */
-    height: 100vh; /* Altura completa de la ventana */
-    margin: 0;
-    background: rgba(44, 44, 44, 1);
-    color: white;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+    background: rgba(44, 44, 44, 0.95);
 }
 
 /* Encabezado */
 .header {
-    grid-area: header; /* Posiciona el header en la parte superior */
-    background: rgba(30, 30, 30, 1);
+    grid-area: header;
     display: flex;
     align-items: center;
-    padding: 20px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-/* Barra Lateral */
-.sidebar {
-    margin-top: 23px;
-    grid-area: sidebar; /* Posiciona la barra lateral debajo del header */
-    background: rgba(30, 30, 30, 1);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    border-radius: 0 20px 20px 0;
-    box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.25);
-}
-
-/* Contenido Principal */
-.content {
-    grid-area: content; /* Posiciona el contenido principal a la derecha de la barra lateral */
-    background: rgba(30, 30, 30, 1);
-    border-radius: 20px;
-    padding: 20px;
-    margin: 20px;
-    overflow-y: auto;
+    background: rgba(30, 30, 30, 0.9);
+    padding: 15px 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
 }
 
 .header .logo {
-    width: 43px;
-    height: 78px;
+    width: 50px;
+    height: 50px;
     background: url('https://marekhudyma.com/assets/2021-05-01-java-duke/gallery/ChezDuke.png') no-repeat center center;
     background-size: contain;
 }
 
 .header .title {
-    margin-left: 20px;
-    font-size: 21px;
-    line-height: 32px;
+    margin-left: 15px;
+    font-size: 24px;
     color: #FFFFFF;
+    font-weight: bold;
+}
+
+/* Barra Lateral */
+.sidebar {
+    margin-top: 25px;
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(30, 30, 30, 0.95);
+    padding: 20px;
+    border-radius: 0 20px 20px 0;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.25);
+    gap: 20px;
 }
 
 .user-info {
     text-align: center;
 }
 
-.user-icon {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto;
-    background: url("C:/Users/uirtis/Documents/Proyecto_App_Web/images/user_icon.png") no-repeat center center;
-    background-size: cover;
+.avatar {
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
+    margin-bottom: 10px;
 }
 
 .username-text {
-    margin-top: 10px;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .sidebar-button {
-    background: rgba(44, 44, 44, 1);
-    color: rgba(255, 255, 255, 1);
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 10px;
+    width: 100%;
     text-align: center;
+    background: rgba(44, 44, 44, 1);
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
     text-decoration: none;
+    border: none;
 }
+
 .sidebar-button:hover {
-    background-color: #555; 
+    background-color: #555;
 }
 
 .sidebar-button.logout {
     margin-top: auto;
+    background-color: #FFFFFF;
+    color: #2C2C2C;
+}
+
+.sidebar-button.logout:hover {
+    background-color: #2C2C2C;
+    color: #FFFFFF;
+}
+
+/* Contenido Principal */
+.content {
+    grid-area: content;
+    background: rgba(30, 30, 30, 0.95);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+    overflow-y: auto;
 }
 
 .content-title {
-    background: rgba(44, 44, 44, 1);
-    border-radius: 10px;
-    padding: 10px 20px;
-    text-align: left;
     font-size: 24px;
     margin-bottom: 20px;
-    display: inline-block;
-}
-
-.publication-pinned{
-    background: rgba(44, 44, 44, 1);
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
+    color: #FFFFFF;
 }
 
 /* Publicaciones */
-.publication {
+.publication,
+.publication-pinned {
     background: rgba(44, 44, 44, 1);
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
 }
-
-.publication-title {
-    font-size: 17px;
-    margin-bottom: 10px;
-    background: rgba(30, 30, 30, 1);
+.content-publication {
+    background: #1E1E1E;
+    padding: 20px;
     border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    margin: 13px;
+}
+.publication-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background: #2C2C2C;
     padding: 10px 20px;
-    text-align: left;
-    margin-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
     display: inline-block;
 }
 
 .publication-description {
-    margin-bottom: 15px;
     font-size: 16px;
-}
-
-/* Contenedor Flexible de Contenido */
-.publication-content {
-    margin-bottom: 20px;
-}
-
-/* Código */
-.code-block {
-    background: rgba(30, 30, 30, 1);
-    padding: 15px;
+    margin: 10px;
+    color: #DDD;
+    background: #2C2C2C;
+    padding: 10px 20px;
+    border: none;
     border-radius: 10px;
-    overflow-x: auto;
+}
+
+/* Botones */
+.edit-button,
+.delete-button,
+.create-post-button {
+    background: rgba(30, 30, 30, 1);
     color: #FFFFFF;
-    font-family: 'JetBrains Mono', monospace;
+    padding: 10px 20px;
     font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
 }
 
-/* Imagen */
-.image-container {
-    text-align: center;
-    margin: 20px 0;
+.edit-button:hover,
+.delete-button:hover,
+.create-post-button:hover {
+    background-color: #555;
 }
 
+/* Imagenes */
 .publication-image {
     max-width: 100%;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* Botones */
-.edit-button {
-    background: rgba(30, 30, 30, 1);
-    color: rgba(255, 255, 255, 1);
-    padding: 10px 20px;
-    font-size: 14px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    text-align: center;
-}
-.edit-button:hover{
-    background-color: #555;  
-}
-
-.delete-button{
-    background: rgba(30, 30, 30, 1);
-    color: rgba(255, 255, 255, 1);
-    padding: 10px 20px;
-    font-size: 14px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    text-align: center;
-}
-.delete-button:hover{
-    background-color: #555; 
-}
-
-.create-post-button {
-    background: rgba(30, 30, 30, 1);
-    color: rgba(255, 255, 255, 1);
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    text-align: center;
-    margin: 20px 0;
-}
-
-/* Texto General */
-.section-title,
-.section-subtitle,
-.button-text {
-    font-size: 16px;
-    text-align: center;
-}
-
-/* Ajustes Generales */
-h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    color: #FFFFFF;
-}
-
-p {
-    margin: 0;
-    line-height: 1.6;
-}
-.avatar{
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 80px;
+.publication-date{
+    margin-left: 90%;
+    font-size: 12px;
+    color: #555;
 }
 
