@@ -8,19 +8,20 @@
 <%@ page import="java.util.Calendar" %>
 
 <%
+    
     UsuarioDTO usuarioDTO = (UsuarioDTO) session.getAttribute("usuarioDTO");
     if (usuarioDTO == null) {
         response.sendRedirect("Login.jsp");
         return;
     }
-
-    PostDTO postDTO = (PostDTO) session.getAttribute("usuarioDTO");
+    
+    PostDTO postDTO = (PostDTO) session.getAttribute("postDTO");
     if (postDTO == null) {
         response.sendRedirect("Publicaciones.jsp");
         return;
     }
 
-    List<ComentarioDTO> comentarios = (List<ComentarioDTO>) session.getAttribute("comentario");
+    List<ComentarioDTO> comentarios = (List<ComentarioDTO>) session.getAttribute("comentarios");
     //System.out.println(publicaciones);
 %>
 

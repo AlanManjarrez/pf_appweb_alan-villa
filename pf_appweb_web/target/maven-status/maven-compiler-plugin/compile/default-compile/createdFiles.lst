@@ -6,5 +6,6 @@ pf_appweb_web_servlets\BorrarPublicacionServlet.class
 pf_appweb_web_servlets\LoginServlet.class
 pf_appweb_web\resources\JakartaEE11Resource.class
 pf_appweb_web_servlets\CrearPublicacionServlet.class
+pf_appweb_web_servlets\ComentariosServlet.class
 pf_appweb_web_servlets\LogoutServlet.class
 pf_appweb_web_servlets\EditarPublicacionServlet.class
