@@ -21,7 +21,6 @@ public class PostDTO {
     private String contenido;
     private Calendar fechaHoraEdicion;
     private Calendar fechaHoraCreacion;
-    private TipoUsuario tipoUsuario;
     private Boolean Anclado;
     private UsuarioDTO usuario;
     private List<Comentario> comentarios;
@@ -68,15 +67,6 @@ public class PostDTO {
     public void setFechaHoraCreacion(Calendar fechaHoraCreacion) {
         this.fechaHoraCreacion = fechaHoraCreacion;
     }
-
-    public TipoUsuario getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(TipoUsuario tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
-
     public Boolean getAnclado() {
         return Anclado;
     }

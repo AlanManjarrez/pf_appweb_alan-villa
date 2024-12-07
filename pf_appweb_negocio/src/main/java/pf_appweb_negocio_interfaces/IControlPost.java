@@ -18,7 +18,7 @@ public interface IControlPost {
 
     public Boolean editarPost(PostDTO post);
 
-    public Boolean eliminarPost(PostDTO post);
+    public Boolean eliminarPost(long id);
 
     public List<PostDTO> obtenerPost();
 

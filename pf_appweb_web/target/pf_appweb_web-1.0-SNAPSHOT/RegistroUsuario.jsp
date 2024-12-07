@@ -77,18 +77,15 @@
                             <option value="femenino">Femenino</option>
                             <option value="otro">Otro</option>
                         </select>
-
                         <!-- Submit Button -->
                         <button type="submit" class="boton-registrarse">Registrarse</button>
                     </form>
+                    <section class="login-boton-container">
+                        <div class="login-boton">
+                            <a href="Login.jsp">¿Tienes cuenta? Inicia sesión</a>
+                        </div>
+                    </section>
                 </div> 
-                
-                <!-- Login Section -->
-                <section class="login-boton-container">
-                    <div class="login-boton">
-                        <a href="Login.jsp">¿Tienes cuenta? Inicia sesión</a>
-                    </div>
-                </section>
             </section>
         </main>
 

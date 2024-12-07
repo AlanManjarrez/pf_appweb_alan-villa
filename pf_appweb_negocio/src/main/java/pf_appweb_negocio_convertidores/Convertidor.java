@@ -33,15 +33,15 @@ public class Convertidor implements IConvertidor {
         usuario.setTelefono(usuarioDTO.getTelefono());
         usuario.setDomicilio(usuarioDTO.getDomicilio());
         usuario.setGenero(usuarioDTO.getGenero());
-        
+
         if (usuarioDTO.getTipoUsuario() == TipoUsuario.ADMOR) {
             usuario.setTipoUsuario(TipoUsuario.ADMOR);
-        }else{
+        } else {
             usuario.setTipoUsuario(TipoUsuario.NORMAL);
-            
+
         }
         usuario.setAvatar(usuarioDTO.getAvatar());
-        
+
         return usuario;
     }
 
@@ -58,10 +58,10 @@ public class Convertidor implements IConvertidor {
         usuarioDTO.setTelefono(usuario.getTelefono());
         usuarioDTO.setDomicilio(usuario.getDomicilio());
         usuarioDTO.setGenero(usuario.getGenero());
-        
+
         if (usuario.getTipoUsuario() == TipoUsuario.ADMOR) {
             usuarioDTO.setTipoUsuario(TipoUsuario.ADMOR);
-        }else{
+        } else {
             usuarioDTO.setTipoUsuario(TipoUsuario.NORMAL);
         }
         usuarioDTO.setAvatar(usuario.getAvatar());
@@ -80,9 +80,9 @@ public class Convertidor implements IConvertidor {
         post.setFechaHoraEdicion(postDTO.getFechaHoraEdicion());
         post.setAnclado(postDTO.getAnclado());
 
-        if (post.getUsuario() != null) {
-            UsuarioDTO usuarioDTO = usuarioADTO(post.getUsuario());
-            postDTO.setUsuario(usuarioDTO);
+        if (postDTO.getUsuario() != null) {
+            Usuario usuario = dtoAUsuario(postDTO.getUsuario());
+            post.setUsuario(usuario);
         }
 
         return post;
@@ -99,9 +99,10 @@ public class Convertidor implements IConvertidor {
         postDTO.setFechaHoraEdicion(post.getFechaHoraEdicion());
         postDTO.setAnclado(post.getAnclado());
 
-        if (postDTO.getUsuario() != null) {
-            Usuario usuario = dtoAUsuario(postDTO.getUsuario());
-            post.setUsuario(usuario);
+
+        if (post.getUsuario() != null) {
+            UsuarioDTO usuarioDTO = usuarioADTO(post.getUsuario()); 
+            postDTO.setUsuario(usuarioDTO);
         }
 
         return postDTO;

@@ -6,6 +6,8 @@ package pf_appweb_persistencia_entity;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,6 +15,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -23,7 +26,7 @@ import javax.persistence.TemporalType;
  */
 @Entity(name = "Usuario")
 public class Usuario implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,7 +56,7 @@ public class Usuario implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
-    
+
     @Column(name = "avatar")
     private String avatar;
 
@@ -100,7 +103,7 @@ public class Usuario implements Serializable {
     public void setDomicilio(String domicilio) {
         this.domicilio = domicilio;
     }
-    
+
     public String getDomicilio() {
         return domicilio;
     }

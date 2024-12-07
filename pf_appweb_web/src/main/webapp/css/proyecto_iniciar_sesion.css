@@ -120,6 +120,7 @@ p {
 }
 a{
     color: #FFFFFF;
+    text-decoration: none;
 }
 
 /* Estilo del botón de login */
@@ -131,10 +132,10 @@ a{
     background-color: #1E1E1E;     /* Fondo oscuro */
     color: white;                  /* Color de texto blanco */
     border-radius: 5px;            /* Bordes redondeados */
-    text-decoration: none;         /* Elimina el subrayado predeterminado */
     font-size: 16px;               /* Tamaño de fuente adecuado */
     font-weight: bold;             /* Negrita para destacar */
     transition: background-color 0.3s ease; /* Transición de color de fondo */
+    
 }
 
 /* Efecto hover (cuando el ratón pasa por encima) */

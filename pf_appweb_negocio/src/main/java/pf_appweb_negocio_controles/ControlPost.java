@@ -40,8 +40,8 @@ public class ControlPost implements IControlPost{
     }
 
     @Override
-    public Boolean eliminarPost(PostDTO post) {
-        boolean postDTO = this.postDAO.eliminarPost(convertidor.dtoAPost(post));
+    public Boolean eliminarPost(long id) {
+        boolean postDTO = this.postDAO.eliminarPost(id);
         return postDTO;
     }
 

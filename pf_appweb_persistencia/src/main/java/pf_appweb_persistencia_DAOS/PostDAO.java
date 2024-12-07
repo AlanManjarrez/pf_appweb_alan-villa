@@ -24,12 +24,18 @@ public class PostDAO implements IPostDAO{
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("conexionPU");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
+            if (post.getUsuario() == null || post.getUsuario().getCorreo() == null) {
+                throw new IllegalArgumentException("El usuario asociado al post es nulo o no tiene un ID válido."+post.getUsuario().getId());
+            }
             entityManager.getTransaction().begin();
-            Usuario usuarioExistente = entityManager.find(Usuario.class, post.getUsuario().getId());
+            
+            Usuario usuarioExistente = entityManager.createQuery("SELECT U FROM Usuario U WHERE U.correo = :correo", Usuario.class)
+                       .setParameter("correo", post.getUsuario().getCorreo())
+                       .getSingleResult();
             if (usuarioExistente == null) {
                 throw new Exception("Usuario no encontrado");
             }
-
+            post.setUsuario(usuarioExistente);
             entityManager.persist(post);
             entityManager.getTransaction().commit();
             return true;
@@ -74,15 +80,16 @@ public class PostDAO implements IPostDAO{
     }
 
     @Override
-    public Boolean eliminarPost(Post post) {
+    public Boolean eliminarPost(long id) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("conexionPU");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             entityManager.getTransaction().begin();
-            Post postEncontrado = entityManager.find(Post.class, post.getId());
+            Post postEncontrado = entityManager.find(Post.class, id);
 
             if (postEncontrado == null) {
                 System.out.println("El post no fue encontrado");
+                return false;
             }
 
             entityManager.remove(postEncontrado);

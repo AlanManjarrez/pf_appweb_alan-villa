@@ -18,7 +18,7 @@ public interface IPostDAO {
 
     public Boolean editarPost(Post post);
 
-    public Boolean eliminarPost(Post post);
+    public Boolean eliminarPost(long id);
 
     public List<Post> obtenerPost();
 

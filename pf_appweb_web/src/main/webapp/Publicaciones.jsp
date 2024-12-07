@@ -41,18 +41,20 @@
                 <div class="user-info">
                     <img src="<%= usuarioDTO.getAvatar() != null ? usuarioDTO.getAvatar() : "ruta/default.png"%>" alt="Avatar Usuario" class="avatar" />
                     <br>
-                    <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase("NORMAL")) {%>
+                    <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.NORMAL.toString())) {%>
                     <span class="username-text"><%= usuarioDTO.getNombreCompleto()%></span>
                     <% } %>
-                    <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase("ADMOR")) {%>
+                    <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.ADMOR.toString())) {%>
                     <span class="username-text"><%= usuarioDTO.getNombreCompleto()%></span>
                     <% } %>
 
                 </div>
 
-                <button class="sidebar-button">Crear Publicación</button>
                 <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.ADMOR.toString())) {%>
-                <button class="sidebar-button">Crear Publicación Anclada</button>
+                <a href="CrearPublicacionAnclada.jsp" class="sidebar-button">Crear Publicación Anclada</a>
+                <% } %>
+                <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.NORMAL.toString())) {%>
+                <a href="CrearPublicacion.jsp" class="sidebar-button">Crear Publicación</a>
                 <% } %>
                 <button class="sidebar-button">Editar Perfil</button>
 
@@ -102,12 +104,16 @@
                     <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.NORMAL.toString())) {%>
                     <button class="edit-button" onclick="editarPost(<%= postDTO.getId() %>)">Editar</button>
                     <% } %>
-                    
+                    <% if (!hayPublicaciones) {%>
+                    <p class="publication-title">No hay Publicaciones Recientes</p>
+                    <% }else{ %>  
+                    <p class="publication-title">No hay Publicaciones Recientes</p>
+                    <% } %>
                     <% } } } %>
                     
                 </section>
             </main>
         </div>
     </body>
-
+    <script src="Scripts/Publicaciones.js"></script>
 </html>

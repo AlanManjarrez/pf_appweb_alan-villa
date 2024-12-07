@@ -4,6 +4,8 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>pf_appweb_persistencia_entity.Usuario</class>
     <class>pf_appweb_persistencia_entity.Estado</class>
+    <class>pf_appweb_persistencia_entity.Post</class>
+    <class>pf_appweb_persistencia_entity.Comentario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/red_social?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

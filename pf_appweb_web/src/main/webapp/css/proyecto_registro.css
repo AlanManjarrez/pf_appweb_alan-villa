@@ -62,7 +62,7 @@ body {
 .backgroundform {
     background: #1E1E1E;
     border-radius: 20px;
-    margin-top: 300px;
+    margin-top: 400px;
     padding: 20px;
     box-sizing: border-box;
     max-height: 120vh;
@@ -130,6 +130,7 @@ body {
 /* Button */
 .boton-registrarse {
     font-family: 'JetBrains Mono', monospace;
+    margin-top: 20px;
     background: #2C2C2C;
     border: none;
     border-radius: 20px;
@@ -177,6 +178,7 @@ select {
 }
 a{
     color: #FFFFFF;
+    text-decoration: none;
 }
 
 /* Estilo del botón de login */
@@ -188,7 +190,6 @@ a{
     background-color: #1E1E1E;     /* Fondo oscuro */
     color: white;                  /* Color de texto blanco */
     border-radius: 5px;            /* Bordes redondeados */
-    text-decoration: none;         /* Elimina el subrayado predeterminado */
     font-size: 16px;               /* Tamaño de fuente adecuado */
     font-weight: bold;             /* Negrita para destacar */
     transition: background-color 0.3s ease; /* Transición de color de fondo */

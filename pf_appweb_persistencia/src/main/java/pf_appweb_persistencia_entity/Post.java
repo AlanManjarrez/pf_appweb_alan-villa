@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -22,15 +23,15 @@ import javax.persistence.TemporalType;
  * @author Jose Alan Manjarrez Ontiveros 228982
  * @author Jesus Eduardo Villanueva Godoy 235078
  */
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity(name = "Post")
 public class Post implements Serializable {
-
+    
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "FechaCreacion", nullable = false)
+    @Column(name = "FechaCreacion")
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar fechaHoraCreacion;
 
@@ -40,7 +41,7 @@ public class Post implements Serializable {
     @Column(name = "Contenido", nullable = false, length = 500)
     private String contenido;
 
-    @Column(name = "fechaHoraEdicion", nullable = false)
+    @Column(name = "fechaHoraEdicion")
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar fechaHoraEdicion;
 
