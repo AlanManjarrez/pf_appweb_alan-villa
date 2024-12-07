@@ -99,9 +99,8 @@ public class Convertidor implements IConvertidor {
         postDTO.setFechaHoraEdicion(post.getFechaHoraEdicion());
         postDTO.setAnclado(post.getAnclado());
 
-
         if (post.getUsuario() != null) {
-            UsuarioDTO usuarioDTO = usuarioADTO(post.getUsuario()); 
+            UsuarioDTO usuarioDTO = usuarioADTO(post.getUsuario());
             postDTO.setUsuario(usuarioDTO);
         }
 
@@ -117,8 +116,12 @@ public class Convertidor implements IConvertidor {
         comentario.setFechaHora(comentarioDTO.getFechaHora());
 
         if (comentario.getUsuario() != null) {
-            UsuarioDTO usuarioDTO = usuarioADTO(comentario.getUsuario());
-            comentarioDTO.setUsuario(usuarioDTO);
+            Usuario usuario = dtoAUsuario(comentarioDTO.getUsuario());
+            comentario.setUsuario(usuario);
+        }
+        if (comentarioDTO.getPost() != null) {
+            Post post = dtoAPost(comentarioDTO.getPost());
+            comentario.setPost(post);
         }
 
         return comentario;
@@ -132,9 +135,13 @@ public class Convertidor implements IConvertidor {
         comentarioDTO.setContenido(comentario.getContenido());
         comentarioDTO.setFechaHora(comentario.getFechaHora());
 
-        if (comentarioDTO.getUsuario() != null) {
-            Usuario usuario = dtoAUsuario(comentarioDTO.getUsuario());
-            comentario.setUsuario(usuario);
+        if (comentario.getUsuario() != null) {
+            UsuarioDTO usuarioDTO = usuarioADTO(comentario.getUsuario());
+            comentarioDTO.setUsuario(usuarioDTO);
+        }
+        if (comentario.getPost() != null) {
+            PostDTO postDTO = postADTO(comentario.getPost());
+            comentarioDTO.setPost(postDTO);
         }
 
         return comentarioDTO;

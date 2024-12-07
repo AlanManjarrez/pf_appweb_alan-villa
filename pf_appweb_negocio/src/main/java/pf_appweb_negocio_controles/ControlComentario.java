@@ -22,9 +22,9 @@ public class ControlComentario implements IControlComentario{
     ComentarioDAO comentarioDAO;
     Convertidor convertidor;
 
-    public ControlComentario(ComentarioDAO comentarioDAO, Convertidor convertidor) {
-        this.comentarioDAO = comentarioDAO;
-        this.convertidor = convertidor;
+    public ControlComentario() {
+        this.comentarioDAO = new ComentarioDAO();
+        this.convertidor = new Convertidor();
     }
 
     @Override
@@ -40,13 +40,13 @@ public class ControlComentario implements IControlComentario{
     }
 
     @Override
-    public Boolean eliminarComentario(ComentarioDTO comentario) {
-        boolean comentarioDTO = this.comentarioDAO.eliminarComentario(convertidor.dtoAComentario(comentario));
+    public Boolean eliminarComentario(Long id) {
+        boolean comentarioDTO = this.comentarioDAO.eliminarComentario(id);
         return comentarioDTO;
     }
 
     @Override
-    public List<ComentarioDTO> obtenerComentarios(ComentarioDTO comentarioDTO) {
+    public List<ComentarioDTO> obtenerComentarios() {
         List<Comentario> listaComentarios = this.comentarioDAO.obtenerComentario();
         List<ComentarioDTO> listaComentariosDTO = new ArrayList<>();
 

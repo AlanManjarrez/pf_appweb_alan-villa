@@ -72,7 +72,7 @@
                 <section class="publication-pinned">
                     <% if (anclados != null && !anclados.isEmpty()) {
                             for (PostDTO postDTO : anclados) {%>
-                    <p class="publication-title"><%= postDTO.getTitulo()%></p>
+                    <a href="Comentarios.jsp" class="publication-title"><%= postDTO.getTitulo()%></a>
                     <p class="publication-description"><%= postDTO.getContenido()%></p>
                     <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.ADMOR.toString())) {%>
                     <button class="delete-button" onclick="eliminarPost(<%= postDTO.getId()%>)">Eliminar</button>

@@ -17,13 +17,16 @@ import pf_appweb_persistencia_interfaces.IComentarioDAO;
  * @author Jesus Eduardo Villanueva Godoy 235078
  * @author Jose Alan Manjarrez Ontiveros 228982
  */
-public class ComentarioDAO implements IComentarioDAO{
+public class ComentarioDAO implements IComentarioDAO {
 
     @Override
     public boolean crearComentario(Comentario comentario) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("conexionPU");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
+            if (comentario.getPost().getId() == null) {
+                throw new IllegalArgumentException("El ID del post no puede ser nulo."+comentario.getPost().getId());
+            }
             entityManager.getTransaction().begin();
             Post postExistente = entityManager.find(Post.class, comentario.getPost().getId());
             if (postExistente == null) {
@@ -74,12 +77,12 @@ public class ComentarioDAO implements IComentarioDAO{
     }
 
     @Override
-    public boolean eliminarComentario(Comentario comentario) {
+    public boolean eliminarComentario(Long id) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("conexionPU");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             entityManager.getTransaction().begin();
-            Comentario comentarioEncontrado = entityManager.find(Comentario.class, comentario.getId());
+            Comentario comentarioEncontrado = entityManager.find(Comentario.class, id);
 
             if (comentarioEncontrado == null) {
                 System.out.println("El comentario no fue encontrado");

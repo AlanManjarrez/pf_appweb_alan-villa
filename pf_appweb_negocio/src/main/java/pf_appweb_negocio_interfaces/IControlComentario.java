@@ -18,9 +18,9 @@ public interface IControlComentario {
 
     public Boolean editarComentario(ComentarioDTO comentario);
 
-    public Boolean eliminarComentario(ComentarioDTO comentario);
+    public Boolean eliminarComentario(Long id);
 
-    public List<ComentarioDTO> obtenerComentarios(ComentarioDTO comentarioDTO);
+    public List<ComentarioDTO> obtenerComentarios();
 
     public List<ComentarioDTO> obtenerComentariosPost(Long id);
 

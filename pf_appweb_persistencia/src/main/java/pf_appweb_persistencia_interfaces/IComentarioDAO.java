@@ -18,7 +18,7 @@ public interface IComentarioDAO {
 
     public boolean editarComentario(Comentario comentario);
 
-    public boolean eliminarComentario(Comentario comentario);
+    public boolean eliminarComentario(Long id);
 
     public List<Comentario> obtenerComentario();
 
