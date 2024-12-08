@@ -11,8 +11,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import pf_appweb_negocio_DTOS.ComentarioDTO;
+import pf_appweb_negocio_DTOS.PostDTO;
+import pf_appweb_negocio_DTOS.UsuarioDTO;
 import pf_appweb_negocio_controles.ControlComentario;
+import pf_appweb_negocio_controles.ControlPost;
 import pf_appweb_negocio_interfaces.IControlComentario;
+import pf_appweb_negocio_interfaces.IControlPost;
 
 /**
  *
@@ -57,27 +64,45 @@ public class BorrarComentarioServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String comentarioIdParam = request.getParameter("comentarioId");
+        HttpSession session = request.getSession();
 
         try {
+            
+            UsuarioDTO usuarioDTO = (UsuarioDTO) request.getSession().getAttribute("usuarioDTO");
+            PostDTO postDTO = (PostDTO) request.getSession().getAttribute("postDTO");
+            
+            if (usuarioDTO == null) {
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                response.getWriter().write("{\"success\": false, \"message\": \"Usuario no autenticado. Por favor inicie sesión.\"}");
+                return;
+            }
+            
+            if (postDTO == null) {
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                response.getWriter().write("{\"success\": false, \"message\": \"No se encontro el post.\"}");
+                return;
+            }
+            
             if (comentarioIdParam != null) {
                 long comentarioId = Long.parseLong(comentarioIdParam);
                 IControlComentario controlComentario = new ControlComentario();
-
                 boolean isDeleted = controlComentario.eliminarComentario(comentarioId);
 
                 if (isDeleted) {
-                    response.sendRedirect("PublicacionesServlet");
+                    session.getAttribute("comentarios");
+                    session.setAttribute("postDTO", postDTO);
+                    response.sendRedirect("ComentariosServlet?id="+postDTO.getId());
                 } else {
-                    response.sendRedirect("PublicacionesServlet?error=notFound");
+                    response.sendRedirect("ComentariosServlet?error=notFound");
                 }
             } else {
-                response.sendRedirect("PublicacionesServlet?error=invalidId");
+                response.sendRedirect("ComentariosServlet?error=invalidId");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("PublicacionesServlet?error=internalError");
+            response.sendRedirect("ComentariosServlet?error=internalError");
         }
     }
 

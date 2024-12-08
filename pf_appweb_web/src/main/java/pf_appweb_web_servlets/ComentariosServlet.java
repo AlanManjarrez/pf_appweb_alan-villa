@@ -78,7 +78,6 @@ public class ComentariosServlet extends HttpServlet {
         try {
             // Obtener el ID de la publicación desde los parámetros de la solicitud
             String postIdParam = request.getParameter("id");
-            System.out.println(request.getParameter(postIdParam));
             if (postIdParam == null || postIdParam.isEmpty()) {
                 response.sendRedirect("Publicaciones.jsp");
                 return;
@@ -102,11 +101,10 @@ public class ComentariosServlet extends HttpServlet {
             List<ComentarioDTO> comentarios = (List<ComentarioDTO>) session.getAttribute("comentarios");
 
             // Si no hay comentarios en la sesión, obtenerlos desde la base de datos
-            if (comentarios == null || comentarios.isEmpty()) {
                 comentarios = controlComentario.obtenerComentariosPost(postId);
                 // Guardar los comentarios en la sesión para futuras solicitudes
                 session.setAttribute("comentarios", comentarios);
-            }
+            
 
             // Guardar los datos de la publicación en la sesión
             session.setAttribute("postDTO", postDTO);

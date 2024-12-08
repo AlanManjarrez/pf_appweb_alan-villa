@@ -8,13 +8,13 @@
 <%@ page import="java.util.Calendar" %>
 
 <%
-    
+
     UsuarioDTO usuarioDTO = (UsuarioDTO) session.getAttribute("usuarioDTO");
     if (usuarioDTO == null) {
         response.sendRedirect("Login.jsp");
         return;
     }
-    
+
     PostDTO postDTO = (PostDTO) session.getAttribute("postDTO");
     if (postDTO == null) {
         response.sendRedirect("Publicaciones.jsp");
@@ -58,9 +58,9 @@
                     <span class="username-text"><%= usuarioDTO.getNombreCompleto()%></span>
                     <% } %>
                 </div>
-                    
+
                 <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.NORMAL.toString())) {%>
-                <a href="CrearPublicacion.jsp" class="sidebar-button">Crear Comentario</a>
+                <a href="CrearComentario.jsp" class="sidebar-button">Crear Comentario</a>
                 <% }%>
 
                 <a href="LogoutServlet" class="sidebar-button logout">Cerrar Sesión</a> 
@@ -68,24 +68,28 @@
 
             <!-- Contenido principal -->
             <main class="content">
-                <h2 class="content-title">Publicaciones Ancladas</h2>
+                <h2 class="content-title"><%= postDTO.getTitulo()%> </h2>
 
                 <!-- Publicación anclada para comentar -->
                 <section class="publication-pinned">
-                    <p class="publication-title"><%= postDTO.getTitulo()%></p>
                     <p class="publication-description"><%= postDTO.getContenido()%></p>
-                    <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.ADMOR.toString())) {%>
-                    <button class="delete-button" onclick="eliminarPost(<%= postDTO.getId()%>)">Eliminar</button>
-                    <% } %>
-
                 </section>
 
+                <section class="create-comment">
+                    <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.NORMAL.toString())) {%>
+                    <form action="CrearComentarioServlet" method="POST">
+                    <input class="text-comment" type="text" id="contenido" name="contenido"   placeholder="Hola" required>
+                    <input type="submit" value="botton-send" />
+                    </form>
+                    <% } %>
+                </section>
+
+
                 <!-- Publicación extra (puedes duplicar este bloque) -->
-                <h2 class="content-title">Publicaciones Recientes</h2>
+                <h2 class="content-title">Comentarios</h2>
                 <section class="publication">
                     <% if (comentarios != null && !comentarios.isEmpty()) {
                             for (ComentarioDTO comentarioDTO : comentarios) {
-
                     %>
                     <section class="content-publication">
                         <p class="publication-description"><%= comentarioDTO.getContenido()%></p>
@@ -97,7 +101,7 @@
                         <p class="publication-date"><%= fechaFormateada%></p>
                     </section>
                     <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.ADMOR.toString())) {%>
-                    <button class="delete-button" onclick="eliminarPost(<%= postDTO.getId()%>)">Borrar</button>
+                    <button class="delete-button" onclick="eliminarComentario(<%= comentarioDTO.getId()%>)">Borrar</button>
                     <% } %>
                     <% if (comentarios == null) {%>
                     <p class="publication-title">No hay Comentarios</p>
@@ -109,5 +113,5 @@
             </main>
         </div>
     </body>
-    <script src="Scripts/Comentario.js"></script>
+    <script src="Scripts/Comentarios.js"></script>
 </html>

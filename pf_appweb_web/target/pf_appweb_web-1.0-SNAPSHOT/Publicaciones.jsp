@@ -102,7 +102,7 @@
                                     hayPublicaciones = true;
                     %>
                     <section class="content-publication">
-                        <a href="Comentarios.jsp?id=<%= postDTO.getId() %>" class="publication-title" id="publication-title" ><%= postDTO.getTitulo()%></a>
+                        <a href="ComentariosServlet?id=<%= postDTO.getId() %>" class="publication-title" id="publication-title" ><%= postDTO.getTitulo()%></a>
                         <p class="publication-description"><%= postDTO.getContenido()%></p>
                         <%
                             Calendar fechaHoraCreacion = postDTO.getFechaHoraCreacion();
