@@ -39,7 +39,7 @@ public class Pf_appweb_persistencia {
         Usuario usuario = new Usuario("admin", "admin@gmail.com", "1234", "1234", "NONE", fechaNacimiento, "---", TipoUsuario.ADMOR, "ruta/default.png");
         //usuarioDAO.registrarUsuario(usuario);
 
-        Post post = new Post(fechaCreacion, "Titulo", "Contenido", fechaEdicion, Boolean.FALSE, usuarioDAO.obtenerUsuarioCorreo(usuario.getCorreo()), comentarios);
+        Post post = new Post(fechaCreacion, "Titulo Editado", "Contenido Editado", fechaEdicion, Boolean.FALSE, usuarioDAO.obtenerUsuarioCorreo(usuario.getCorreo()), comentarios);
 
        postDAO.crearPost(post); 
         if (post != null && post.getId() != null) {
@@ -48,10 +48,13 @@ public class Pf_appweb_persistencia {
             System.out.println("Error al crear el post.");
             return;
         }
-
-        Comentario comentario = new Comentario(fechaEdicion, "Contenido", post, usuarioDAO.obtenerUsuarioCorreo(usuario.getCorreo()));
+        post.setTitulo("Editado desde el main");
+        post.setContenido("Contenido editado desde el main");
+        postDAO.editarPost(post);
+        
+        //Comentario comentario = new Comentario(fechaEdicion, "Contenido", post, usuarioDAO.obtenerUsuarioCorreo(usuario.getCorreo()));
 
         // Crear comentario
-        System.out.println(comentarioDAO.crearComentario(comentario));
+        //System.out.println(comentarioDAO.crearComentario(comentario));
     }
 }

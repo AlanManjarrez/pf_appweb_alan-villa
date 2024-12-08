@@ -74,10 +74,11 @@ public class ComentariosServlet extends HttpServlet {
             System.out.println("Usuario_Nulo");
             return;
         }
-
+        
         try {
             // Obtener el ID de la publicación desde los parámetros de la solicitud
-            String postIdParam = request.getParameter("postId");
+            String postIdParam = request.getParameter("id");
+            System.out.println(request.getParameter(postIdParam));
             if (postIdParam == null || postIdParam.isEmpty()) {
                 response.sendRedirect("Publicaciones.jsp");
                 return;
@@ -93,6 +94,7 @@ public class ComentariosServlet extends HttpServlet {
             PostDTO postDTO = controlPost.obtenerPostId(postId);
             if (postDTO == null) {
                 response.sendRedirect("Publicaciones.jsp");
+                System.out.println("post Nulo");
                 return;
             }
 

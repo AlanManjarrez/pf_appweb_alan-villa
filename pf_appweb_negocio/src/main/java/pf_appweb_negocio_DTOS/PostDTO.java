@@ -91,4 +91,9 @@ public class PostDTO {
         this.comentarios = comentarios;
     }
 
+    @Override
+    public String toString() {
+        return "PostDTO{" + "id=" + id + ", titulo=" + titulo + ", contenido=" + contenido + ", fechaHoraEdicion=" + fechaHoraEdicion + ", fechaHoraCreacion=" + fechaHoraCreacion + ", Anclado=" + Anclado + ", usuario=" + usuario + ", comentarios=" + comentarios + '}';
+    }
+    
 }

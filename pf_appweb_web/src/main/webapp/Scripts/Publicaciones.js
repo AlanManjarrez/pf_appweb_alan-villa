@@ -53,44 +53,45 @@ const editarPost = (postId) => {
         }
     });
 };
-const viewCommentsButtons = document.querySelectorAll(".view-comments-button");
 
-viewCommentsButtons.forEach((button) => {
-    button.addEventListener("click", async (event) => {
-        event.preventDefault(); // Evitar comportamiento por defecto del enlace
-
-        // Obtener el ID de la publicación
-        const postId = button.getAttribute("publication-title");
-
-        try {
-            // Realizar la solicitud con fetch
-            const response = await fetch("PublicacionServlet", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ postId })
-            });
-
-            // Verificar si la respuesta es válida
-            const result = await response.json();
-
-            if (response.ok && result.success) {
-                // Redirigir a la página de comentarios si la solicitud es exitosa
-                window.location.href = result.url_redirect;
-            } else {
-                // Mostrar mensaje de error si ocurre un problema
-                showError(result.error || "Error al cargar los comentarios.");
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            showError("Ocurrió un error inesperado. Intenta de nuevo más tarde.");
-        }
-    });
-});
-
-function showError(message) {
-    const errorMessage = document.getElementById("error-message");
-    errorMessage.style.display = "block";
-    errorMessage.textContent = message;
-}
+//const viewCommentsButtons = document.querySelectorAll(".view-comments-button");
+//
+//viewCommentsButtons.forEach((button) => {
+//    button.addEventListener("click", async (event) => {
+//        event.preventDefault(); // Evitar comportamiento por defecto del enlace
+//
+//        // Obtener el ID de la publicación
+//        const postId = button.getAttribute("publication-title");
+//
+//        try {
+//            // Realizar la solicitud con fetch
+//            const response = await fetch("ComentariosServlet", {
+//                method: "POST",
+//                headers: {
+//                    "Content-Type": "application/json"
+//                },
+//                body: JSON.stringify({ postId })
+//            });
+//
+//            // Verificar si la respuesta es válida
+//            const result = await response.json();
+//
+//            if (response.ok && result.success) {
+//                // Redirigir a la página de comentarios si la solicitud es exitosa
+//                window.location.href = result.url_redirect;
+//            } else {
+//                // Mostrar mensaje de error si ocurre un problema
+//                showError(result.error || "Error al cargar los comentarios.");
+//            }
+//        } catch (error) {
+//            console.error("Error:", error);
+//            showError("Ocurrió un error inesperado. Intenta de nuevo más tarde.");
+//        }
+//    });
+//});
+//
+//function showError(message) {
+//    const errorMessage = document.getElementById("error-message");
+//    errorMessage.style.display = "block";
+//    errorMessage.textContent = message;
+//}

@@ -69,6 +69,7 @@ public class PublicacionesServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         UsuarioDTO usuarioDTO = (UsuarioDTO) request.getSession().getAttribute("usuarioDTO");
         if (usuarioDTO == null) {
             response.sendRedirect("Login.jsp");
@@ -80,8 +81,8 @@ public class PublicacionesServlet extends HttpServlet {
             List<PostDTO> publicacionesAncladas = controlPost.obtenerPostAnclados();
             System.out.println("Aqui" + publicaciones.size());
 
-            request.setAttribute("publicaciones", publicaciones);
-            request.setAttribute("anclados", publicacionesAncladas);
+            session.setAttribute("publicaciones", publicaciones);
+            session.setAttribute("anclados", publicacionesAncladas);
 
             request.getRequestDispatcher("Publicaciones.jsp").forward(request, response);
         } catch (Exception e) {

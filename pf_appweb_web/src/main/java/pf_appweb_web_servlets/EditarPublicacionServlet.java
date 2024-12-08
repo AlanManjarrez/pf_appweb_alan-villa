@@ -13,8 +13,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.BufferedReader;
+import java.util.Calendar;
 import pf_appweb_negocio_DTOS.PostDTO;
+import pf_appweb_negocio_DTOS.UsuarioDTO;
 import pf_appweb_negocio_controles.ControlPost;
 import pf_appweb_negocio_interfaces.IControlPost;
 
@@ -61,7 +64,8 @@ public class EditarPublicacionServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String postIdParam = request.getParameter("postId");
 
         try {
@@ -71,7 +75,10 @@ public class EditarPublicacionServlet extends HttpServlet {
                 PostDTO postDTO = postControl.obtenerPostId(postId);
 
                 if (postDTO != null) {
-                    request.setAttribute("postDTO", postDTO);
+                    session.setAttribute("postDTO", postDTO);
+                    session.setAttribute("postId", postDTO.getId());
+                    session.setAttribute("titulo", postDTO.getTitulo());
+                    session.setAttribute("contenido", postDTO.getContenido());
                     request.getRequestDispatcher("EditarPublicacion.jsp").forward(request, response);
                 } else {
                     response.sendRedirect("PublicacionesServlet?error=postNotFound");
@@ -94,41 +101,59 @@ public class EditarPublicacionServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         JsonObject responseJson = new JsonObject();
+        HttpSession session = request.getSession();
 
         try {
-            // Leer los datos enviados en JSON
-            BufferedReader reader = request.getReader();
-            JsonObject jsonBody = JsonParser.parseReader(reader).getAsJsonObject();
+            UsuarioDTO usuarioDTO = (UsuarioDTO) request.getSession().getAttribute("usuarioDTO");
+            PostDTO postDTO = (PostDTO) request.getSession().getAttribute("postDTO");
+            String postIdParam = request.getParameter("postId");
+            String titulo = request.getParameter("titulo");
+            String contenido = request.getParameter("contenido");
+           
 
-            long postId = jsonBody.get("postId").getAsLong();
-            String titulo = jsonBody.get("titulo").getAsString();
-            String contenido = jsonBody.get("contenido").getAsString();
+            if (usuarioDTO == null) {
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                response.getWriter().write("{\"success\": false, \"message\": \"Usuario no autenticado. Por favor inicie sesión.\"}");
+                return;
+            }
 
-            IControlPost controlPost = new ControlPost();
-            PostDTO postDTO = controlPost.obtenerPostId(postId);
-
-            if (postDTO == null) {
-                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-                responseJson.addProperty("error", "La publicación no existe.");
-            } else if (postDTO.getAnclado()) {
+            if (postDTO.getId() == null || titulo == null || contenido == null) {
                 response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                responseJson.addProperty("error", "Las publicaciones ancladas no pueden ser editadas.");
+                responseJson.addProperty("error", "Faltan parámetros necesarios.");
             } else {
-                postDTO.setTitulo(titulo);
-                postDTO.setContenido(contenido);
-                boolean isUpdated = controlPost.editarPost(postDTO);
 
-                if (isUpdated) {
-                    response.setStatus(HttpServletResponse.SC_OK);
-                    responseJson.addProperty("success", true);
-                    responseJson.addProperty("message", "Publicación actualizada con éxito.");
+                //Long postId = postIdParam;
+                IControlPost controlPost = new ControlPost();
+
+                if (postDTO == null) {
+                    response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                    responseJson.addProperty("error", "La publicación no existe.");
+                } else if (postDTO.getAnclado()) {
+                    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                    responseJson.addProperty("error", "Las publicaciones ancladas no pueden ser editadas.");
                 } else {
-                    response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                    responseJson.addProperty("error", "No se pudo actualizar la publicación.");
+                   
+                    postDTO.setTitulo(titulo);
+                    postDTO.setContenido(contenido);
+                    postDTO.setFechaHoraEdicion(Calendar.getInstance());
+                    
+                    boolean isUpdated = controlPost.editarPost(postDTO);
+                    session.setAttribute("publicaciones", controlPost.obtenerPost());
+                    session.setAttribute("anclados", controlPost.obtenerPostAnclados());
+
+                    if (isUpdated) {
+                        response.setStatus(HttpServletResponse.SC_OK);
+                        responseJson.addProperty("success", true);
+                        responseJson.addProperty("message", "Publicación actualizada con éxito.");
+                        response.sendRedirect("PublicacionesServlet");
+                    } else {
+                        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                        responseJson.addProperty("error", "No se pudo actualizar la publicación.");
+                    }
                 }
             }
         } catch (Exception e) {

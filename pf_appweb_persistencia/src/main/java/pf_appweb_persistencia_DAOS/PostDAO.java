@@ -17,7 +17,7 @@ import pf_appweb_persistencia_interfaces.IPostDAO;
  * @author Jesus Eduardo Villanueva Godoy 235078
  * @author Jose Alan Manjarrez Ontiveros 228982
  */
-public class PostDAO implements IPostDAO{
+public class PostDAO implements IPostDAO {
 
     @Override
     public Boolean crearPost(Post post) {
@@ -25,13 +25,13 @@ public class PostDAO implements IPostDAO{
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             if (post.getUsuario() == null || post.getUsuario().getCorreo() == null) {
-                throw new IllegalArgumentException("El usuario asociado al post es nulo o no tiene un ID válido."+post.getUsuario().getId());
+                throw new IllegalArgumentException("El usuario asociado al post es nulo o no tiene un ID válido." + post.getUsuario().getId());
             }
             entityManager.getTransaction().begin();
-            
+
             Usuario usuarioExistente = entityManager.createQuery("SELECT U FROM Usuario U WHERE U.correo = :correo", Usuario.class)
-                       .setParameter("correo", post.getUsuario().getCorreo())
-                       .getSingleResult();
+                    .setParameter("correo", post.getUsuario().getCorreo())
+                    .getSingleResult();
             if (usuarioExistente == null) {
                 throw new Exception("Usuario no encontrado");
             }
@@ -64,7 +64,12 @@ public class PostDAO implements IPostDAO{
                 System.out.println("El post no fue encontrado");
             }
 
-            entityManager.persist(postEncontrado);
+            // Actualizar los valores del post encontrado
+            postEncontrado.setTitulo(post.getTitulo());
+            postEncontrado.setContenido(post.getContenido());
+            postEncontrado.setAnclado(post.getAnclado());
+
+            entityManager.merge(postEncontrado);
             entityManager.getTransaction().commit();
             return true;
         } catch (Exception e) {
