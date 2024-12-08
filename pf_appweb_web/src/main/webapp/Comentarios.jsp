@@ -58,11 +58,8 @@
                     <span class="username-text"><%= usuarioDTO.getNombreCompleto()%></span>
                     <% } %>
                 </div>
-
-                <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.NORMAL.toString())) {%>
-                <a href="CrearComentario.jsp" class="sidebar-button">Crear Comentario</a>
-                <% }%>
-
+                
+                <a href="Publicaciones.jsp" class="sidebar-button">Regresar</a>
                 <a href="LogoutServlet" class="sidebar-button logout">Cerrar Sesión</a> 
             </aside>
 
@@ -71,15 +68,17 @@
                 <h2 class="content-title"><%= postDTO.getTitulo()%> </h2>
 
                 <!-- Publicación anclada para comentar -->
-                <section class="publication-pinned">
+                <section class="main-publication">
                     <p class="publication-description"><%= postDTO.getContenido()%></p>
                 </section>
-
+                
+                <h2 class="content-title">Crear Comentario</h2>
+                
                 <section class="create-comment">
                     <% if (usuarioDTO.getTipoUsuario().toString().equalsIgnoreCase(TipoUsuarioDTO.NORMAL.toString())) {%>
                     <form action="CrearComentarioServlet" method="POST">
                     <input class="text-comment" type="text" id="contenido" name="contenido"   placeholder="Hola" required>
-                    <input type="submit" value="botton-send" />
+                    <input class="button-comment" type="submit" value="Enviar Comentario" />
                     </form>
                     <% } %>
                 </section>

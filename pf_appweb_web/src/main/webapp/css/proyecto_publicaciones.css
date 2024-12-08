@@ -154,6 +154,9 @@ body {
     display: inline-block;
     text-decoration: none;
 }
+.publication-title:hover{
+     background-color: #555;
+}
 
 .publication-description {
     font-size: 16px;
