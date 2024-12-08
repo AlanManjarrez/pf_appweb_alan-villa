@@ -37,10 +37,10 @@ public class Pf_appweb_persistencia {
         fechaNacimiento.set(2001, Calendar.OCTOBER, 26);
 
         Usuario usuario = new Usuario("admin", "admin@gmail.com", "1234", "1234", "NONE", fechaNacimiento, "---", TipoUsuario.ADMOR, "ruta/default.png");
-        //usuarioDAO.registrarUsuario(usuario);
+        usuarioDAO.registrarUsuario(usuario);
 
-        Post post = new Post(fechaCreacion, "Titulo Editado", "Contenido Editado", fechaEdicion, Boolean.FALSE, usuarioDAO.obtenerUsuarioCorreo(usuario.getCorreo()), comentarios);
-
+        //Post post = new Post(fechaCreacion, "Titulo Editado", "Contenido Editado", fechaEdicion, Boolean.FALSE, usuarioDAO.obtenerUsuarioCorreo(usuario.getCorreo()), comentarios);
+        /**
        postDAO.crearPost(post); 
         if (post != null && post.getId() != null) {
             System.out.println("Post creado con ID: " + post.getId());
@@ -51,6 +51,7 @@ public class Pf_appweb_persistencia {
         post.setTitulo("Editado desde el main");
         post.setContenido("Contenido editado desde el main");
         postDAO.editarPost(post);
+        */
         
         //Comentario comentario = new Comentario(fechaEdicion, "Contenido", post, usuarioDAO.obtenerUsuarioCorreo(usuario.getCorreo()));
 
