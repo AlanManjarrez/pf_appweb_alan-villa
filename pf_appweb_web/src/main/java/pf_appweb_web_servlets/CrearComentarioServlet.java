@@ -23,7 +23,8 @@ import pf_appweb_negocio_interfaces.IControlPost;
 
 /**
  *
- * @author uirtis
+ * @author Jesus Eduardo Villanueva Godoy 235078
+ * @author Jose Alan Manjarrez Ontiveros 228982
  */
 @WebServlet(name = "CrearComentarioServlet", urlPatterns = {"/CrearComentarioServlet"})
 public class CrearComentarioServlet extends HttpServlet {

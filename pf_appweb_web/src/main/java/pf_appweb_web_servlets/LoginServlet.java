@@ -24,7 +24,8 @@ import pf_appweb_negocio_interfaces.IControlUsuario;
 
 /**
  *
- * @author uirtis
+ * @author Jesus Eduardo Villanueva Godoy 235078
+ * @author Jose Alan Manjarrez Ontiveros 228982
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
