@@ -11,6 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    animation: moveBackground 20s linear infinite;
 }
 
 /* Encabezado */
@@ -117,7 +118,7 @@ p {
 .return-boton-container {
     text-align: center;
     margin-top: 30px;  /* Da espacio por encima */
-    
+
 }
 a{
     color: #FFFFFF;
@@ -137,7 +138,7 @@ a{
     font-size: 16px;               /* Tamaño de fuente adecuado */
     font-weight: bold;             /* Negrita para destacar */
     transition: background-color 0.3s ease; /* Transición de color de fondo */
-    
+
 }
 
 /* Efecto hover (cuando el ratón pasa por encima) */

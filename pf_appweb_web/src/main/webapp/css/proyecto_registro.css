@@ -14,6 +14,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     color: #FFFFFF;
+    animation: moveBackground 20s linear infinite;
 }
 
 /* Header */

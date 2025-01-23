@@ -12,6 +12,7 @@ body {
     color: #FFFFFF;
     height: 100%;
     overflow-x: hidden;
+    animation: moveBackground 20s linear infinite;
 }
 
 /* Contenedor Principal */
@@ -155,7 +156,7 @@ body {
     text-decoration: none;
 }
 .publication-title:hover{
-     background-color: #555;
+    background-color: #555;
 }
 
 .publication-description {
@@ -198,7 +199,7 @@ body {
     padding: 10px 20px;
     border: none;
     border-radius: 10px;
-    
+
 }
 
 /* Botones */
